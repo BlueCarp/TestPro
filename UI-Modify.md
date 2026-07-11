@@ -1,9 +1,8 @@
 # UI-Modify.md — 视觉设计交付报告
 
-> **版本**: 1.0.0
 > **设计者**: UID-UI设计师
 > **日期**: 2026-07-11
-> **基于**: specs/wireframes.md（PM）, specs/design.md（TD）, specs/api-contract.yaml
+> **基于**: specs/prd.md, specs/wireframes.md
 
 ---
 
@@ -11,54 +10,61 @@
 
 | 文件 | 说明 | 状态 |
 |------|------|------|
-| `Design-Token.pen` | 设计令牌 + 组件规范（色彩/字体/间距/圆角/阴影/动效） | ✅ 新建 |
-| `PageUI-Design.pen` | 页面级 UI 设计（计时器主页 7 状态 + 设置页 3 状态） | ✅ 新建 |
-| `specs/ui-design.md` | 完整视觉设计规范文档 | ✅ 已存在 |
-| `specs/mockups/timer-*.html` | HTML 效果预览（idle / running / paused / short_break / long_break） | ✅ 已存在 |
-| `specs/mockups/settings-*.html` | HTML 效果预览（default / validation_error） | ✅ 已存在 |
-| `specs/mockups/modal-confirm.html` | HTML 确认弹窗效果预览 | ✅ 已存在 |
+| `Design-Token.pen` | 设计令牌变量（色彩/字体/间距/圆角） | ✅ 新建 |
+| `PageUI-Design.pen` | 高保真页面设计（2 页面 × 7 状态 + 组件） | ✅ 新建 |
 
 ---
 
 ## 本次设计涵盖内容
 
-### ✅ 设计令牌（Design Tokens）
-- 品牌色（番茄红系 #E53935 主色）、阶段色、中性色、功能色
-- 暗黑模式独立色值映射（深蓝紫底 #1A1A2E）
-- 字体体系（Inter + JetBrains Mono）、字号缩放（Major Third 1.25）
-- 8px 网格间距体系、圆角、阴影、过渡动效
+### 设计令牌（Design-Token.pen）
 
-### ✅ 组件规范（覆盖 5 种交互状态）
-- TitleBar / PhaseLabel / TimerDisplay / PrimaryButton / SkipButton
-- ResetButton / PomodoroCounter / DurationInput / ToggleSwitch
-- ConfirmModal / Toast
-- 所有交互组件覆盖：default / hover / active / focus-visible / disabled
+| 类别 | 变量 |
+|------|------|
+| 品牌色 | `color-primary` #E53935, `color-primary-dark` #C62828, `color-primary-light` #EF5350 |
+| 文字 | `color-text-primary` #212121, `color-text-secondary` #757575, `color-text-on-primary` #FFFFFF |
+| 界面色 | `color-border` #E0E0E0, `color-background` #FAFAFA, `color-surface` #FFFFFF |
+| 阶段色 | `color-success` #43A047（短休息绿）, `color-info` #1E88E5（长休息蓝） |
+| 字体 | `font-ui` Inter, `font-mono` JetBrains Mono |
+| 间距 | 8px 网格：xs=4, sm=8, md=16, lg=24, xl=32, 2xl=48 |
+| 圆角 | sm=4, md=8, lg=16, full=capsule |
 
-### ✅ 页面设计
-- 计时器主页：7 个 UI 状态全覆盖（idle / running_work / paused_work / running_short_break / paused_short_break / running_long_break / paused_long_break）
-- 设置页面：3 个状态（default / validation_error / saved）
-- HTML 高保真 Mockup：8 个预览文件
+### 页面设计（PageUI-Design.pen）
 
-### ✅ 可访问性（WCAG AA）
-- 颜色对比度 ≥ 4.5:1（正文）/ ≥ 3:1（大文本）
-- 焦点环（outline: 2px solid #1A73E8）
-- 键盘导航 + 快捷键（Space/R/S/Esc）
-- prefers-reduced-motion 适配
-- aria-label / aria-live / role 无障碍属性
+**计时器主页** — 5 个状态：
+- `idle`: 25:00 / 工 作（红点） / 开 始（红按钮） / 🍅×0
+- `running_work`: 23:45 / 暂 停 + 跳 过 链接 / 🍅×0
+- `paused_work`: 18:32 / 继 续 + 重 置 · 跳 过 / 🍅×2
+- `running_short_break`: 4:15 / 短 休 息（绿点 #43A047） / 暂 停（绿） / 🍅×1
+- `running_long_break`: 11:22 / 长 休 息（蓝点 #1E88E5） / 暂 停（蓝） / 🍅×4
 
-### ✅ 暗黑模式
-- 深蓝紫背景 #1A1A2E 独立色值映射，非反色处理
-- 品牌红保持亮色在暗背景突出
+**设置页面**：
+- 返回 + 设置标题
+- 时长调节（工作时间/短休息/长休息，各带 −/+ 步进）
+- 通知开关（声音通知/桌面通知，toggle ON）
+- 保存设置（红胶囊）+ 恢复默认（描边）
 
-### ✅ 字段对齐
-- 组件名与 wireframes.md 元素清单完全一致
-- 数据字段名与 api-contract.yaml 完全一致
-- Token 名与 design.md 技术方案对齐
+**共享组件**：
+- `ConfirmModal`：320px 居中弹窗，取消（描边）+ 确定（红）
+- `Toast - Success`：绿色底 #43A047，"设置已保存"
+- `Toast - Error`：红色底 #E53935，校验错误提示
+
+### 视觉规格
+
+- 窗口：400×600px，圆角 16px，外层阴影
+- 标题栏：48px，Pomodoro 标题 + 齿轮图标
+- 计时器：JetBrains Mono 56px/700，letter-spacing 4
+- 主按钮：200×48 胶囊，颜色随阶段变化，带同色阴影
+- 文字链接：Inter 14px/500，#757575
+- 色点：10px 圆，颜色对应阶段
+
+### 字段对齐
+
+- 组件名与 wireframes.md 元素清单一致
+- 数据字段与 PRD 定义一致
 
 ---
 
 ## 变更说明
 
-此次为 Phase 1 首次视觉设计交付。基于 PM 的线框图（wireframes.md）和 TD 的技术设计（design.md、api-contract.yaml），从零建立番茄钟计时器的完整视觉体系。
-
-**设计方向**：暖色番茄红 + 中性灰，营造干净、专注、温暖的产品气质。胶囊形按钮传递友好感，等宽计时数字强调专业感，阶段三重编码（色点+文字+发光）确保时刻清晰。
+首次视觉设计交付。基于 PM 线框图（wireframes.md）建立番茄钟计时器的完整视觉体系。设计方向：暖色番茄红 + 干净中性灰，胶囊按钮传递友好感，等宽计时数字强调专业感，阶段三重编码（色点+文字+按钮色）确保时刻清晰。

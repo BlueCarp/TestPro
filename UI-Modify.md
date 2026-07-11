@@ -112,7 +112,8 @@
 ### Logo 文件
 
 - `specs/mockups/logo.svg` — 手工 SVG 版（番茄 + 时钟指针，可直接用做应用图标）
-- `specs/mockups/logo.png` — Agnes AI 生成版（受网络限制未自动下载，远程可用）
+- `specs/mockups/logo.png` — **Agnes AI 生成版（主 logo）**：番茄红主体 + 白色嵌入式钟面（指针 10:10）+ 绿叶 + 光泽高光，iOS 风格圆角方形白底
+- `specs/mockups/logo-v1.png` — Agnes AI 生成版（备选）：相似设计，指针指向 2 点和 12 点方向
 
 ### 影响文件
 

@@ -68,3 +68,20 @@
 ## 变更说明
 
 首次视觉设计交付。基于 PM 线框图（wireframes.md）建立番茄钟计时器的完整视觉体系。设计方向：暖色番茄红 + 干净中性灰，胶囊按钮传递友好感，等宽计时数字强调专业感，阶段三重编码（色点+文字+按钮色）确保时刻清晰。
+
+---
+
+## V1.0.1 更新 — 2026-07-11
+
+### 变更内容
+
+| 变更 | 说明 |
+|------|------|
+| 图标全部改用 SVG | 替换所有 emoji 图标为自定义 SVG 组件：齿轮、番茄、时钟、铃铛、对勾、警告三角、左箭头 |
+| 中文字体改为 Noto Sans SC | `font-ui` 变量从 Inter 改为 Noto Sans SC（中文字体优化），等宽字体 JetBrains Mono 不变 |
+
+### 影响文件
+
+- `Design-Token.pen` — `font-sans` 变量改为 "Noto Sans SC"；文档说明更新
+- `PageUI-Design.pen` — 所有 emoji 替换为 SVG 图标引用，文字节点自动继承 `$font-ui`（Noto Sans SC）
+- `specs/ui-design.md` — 字体规范和图标规范更新

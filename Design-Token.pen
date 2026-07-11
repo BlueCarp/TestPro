@@ -29,9 +29,10 @@
           "id": "r5Dh2Z",
           "name": "Document Subtitle",
           "fill": "$text-secondary",
-          "content": "Figma-style design token reference. All values in px. Light and dark mode coverage.",
+          "content": "Figma-style design token reference. All values in px. Light and dark mode coverage. UI font: Noto Sans SC (optimized for Chinese text).",
           "fontFamily": "$font-sans",
-          "fontSize": 16
+          "fontSize": 16,
+          "fontWeight": "normal"
         },
         {
           "type": "frame",
@@ -58,7 +59,8 @@
               "fill": "$text-secondary",
               "content": "Tomato red primary palette — the core brand identity of Pomodoro Timer.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -192,7 +194,8 @@
               "fill": "$text-secondary",
               "content": "Each timer phase has a distinct color for instant recognition.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -278,7 +281,8 @@
               "fill": "$text-secondary",
               "content": "Text, border, and surface colors for both light and dark modes.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -453,7 +457,8 @@
               "fill": "$text-secondary",
               "content": "Semantic colors for feedback, states, and accessibility.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -676,7 +681,8 @@
               "fill": "$text-secondary",
               "content": "Deep blue-purple dark theme. All tokens switch via theme axis mode:dark.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -732,7 +738,8 @@
                           "fill": "#E8E8E8",
                           "content": "Page (#1A1A2E)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -762,7 +769,8 @@
                           "fill": "#E8E8E8",
                           "content": "Card (#2D2D44)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -792,7 +800,8 @@
                           "fill": "#E8E8E8",
                           "content": "Hover (#252540)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -822,7 +831,8 @@
                           "fill": "#E8E8E8",
                           "content": "Elevated (#1E1E35)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -872,7 +882,8 @@
                           "fill": "#E8E8E8",
                           "content": "Text Primary (#E8E8E8)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -902,7 +913,8 @@
                           "fill": "#E8E8E8",
                           "content": "Text Secondary (#B0B0B0)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -932,7 +944,8 @@
                           "fill": "#E8E8E8",
                           "content": "Border (#3D3D5C)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -962,7 +975,8 @@
                           "fill": "#E8E8E8",
                           "content": "Primary (#EF5350)",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -995,9 +1009,10 @@
               "id": "S4ZFq",
               "name": "Desc",
               "fill": "$text-secondary",
-              "content": "Inter for UI, JetBrains Mono for the timer display and code-like values.",
+              "content": "Noto Sans SC for UI (Chinese-optimized), JetBrains Mono for the timer display and code-like values.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -1046,7 +1061,8 @@
                       "fill": "$text-secondary",
                       "content": "The quick brown fox jumps over the lazy dog.",
                       "fontFamily": "$font-sans",
-                      "fontSize": 16
+                      "fontSize": 16,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1055,7 +1071,8 @@
                       "fill": "$text-secondary",
                       "content": "400 Regular · 500 Medium · 600 Semibold · 700 Bold",
                       "fontFamily": "$font-mono",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -1099,7 +1116,8 @@
                       "fill": "$text-secondary",
                       "content": "25:00 → 24:59 → 24:58",
                       "fontFamily": "$font-mono",
-                      "fontSize": 16
+                      "fontSize": 16,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -1108,7 +1126,8 @@
                       "fill": "$text-secondary",
                       "content": "400 Regular · 500 Medium · 700 Bold",
                       "fontFamily": "$font-mono",
-                      "fontSize": 12
+                      "fontSize": 12,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -1158,7 +1177,8 @@
                           "fill": "$text-secondary",
                           "content": "56",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1187,7 +1207,8 @@
                           "fill": "$text-secondary",
                           "content": "32",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1216,7 +1237,8 @@
                           "fill": "$text-secondary",
                           "content": "24",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1245,7 +1267,8 @@
                           "fill": "$text-secondary",
                           "content": "20",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1274,7 +1297,8 @@
                           "fill": "$text-secondary",
                           "content": "16",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1283,7 +1307,8 @@
                           "fill": "$text-primary",
                           "content": "Start focusing on your task",
                           "fontFamily": "$font-sans",
-                          "fontSize": 16
+                          "fontSize": 16,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1302,7 +1327,8 @@
                           "fill": "$text-secondary",
                           "content": "14",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1311,7 +1337,8 @@
                           "fill": "$text-primary",
                           "content": "Pomodoro Technique",
                           "fontFamily": "$font-sans",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1330,7 +1357,8 @@
                           "fill": "$text-secondary",
                           "content": "12",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1339,7 +1367,8 @@
                           "fill": "$text-secondary",
                           "content": "Completed 3 of 4 sessions",
                           "fontFamily": "$font-sans",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1358,7 +1387,8 @@
                           "fill": "$text-secondary",
                           "content": "10",
                           "fontFamily": "$font-mono",
-                          "fontSize": 12
+                          "fontSize": 12,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1403,7 +1433,8 @@
               "fill": "$text-secondary",
               "content": "8px grid baseline. All spacing values are multiples of 8.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -1462,7 +1493,8 @@
                           "fill": "$text-primary",
                           "content": "4px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1471,7 +1503,8 @@
                           "fill": "$text-secondary",
                           "content": "Inline icon gap",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1513,7 +1546,8 @@
                           "fill": "$text-primary",
                           "content": "8px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1522,7 +1556,8 @@
                           "fill": "$text-secondary",
                           "content": "Compact gap, label spacing",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1564,7 +1599,8 @@
                           "fill": "$text-primary",
                           "content": "16px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1573,7 +1609,8 @@
                           "fill": "$text-secondary",
                           "content": "Card padding, form gap",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1615,7 +1652,8 @@
                           "fill": "$text-primary",
                           "content": "24px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1624,7 +1662,8 @@
                           "fill": "$text-secondary",
                           "content": "Section padding",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1666,7 +1705,8 @@
                           "fill": "$text-primary",
                           "content": "32px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1675,7 +1715,8 @@
                           "fill": "$text-secondary",
                           "content": "Page padding, card gap",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1717,7 +1758,8 @@
                           "fill": "$text-primary",
                           "content": "40px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1726,7 +1768,8 @@
                           "fill": "$text-secondary",
                           "content": "Section gap",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1768,7 +1811,8 @@
                           "fill": "$text-primary",
                           "content": "48px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1777,7 +1821,8 @@
                           "fill": "$text-secondary",
                           "content": "Hero margin",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1819,7 +1864,8 @@
                           "fill": "$text-primary",
                           "content": "64px",
                           "fontFamily": "$font-mono",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         },
                         {
                           "type": "text",
@@ -1828,7 +1874,8 @@
                           "fill": "$text-secondary",
                           "content": "Page margin",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -1875,7 +1922,8 @@
                       "width": "fill_container",
                       "content": "All measurements align to an 8px baseline. Use $spacing-unit as the atomic unit. Combine multiplicatively: gap=px16 → $spacing-unit × 2.",
                       "fontFamily": "$font-sans",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "frame",
@@ -1901,7 +1949,8 @@
                           "fill": "$text-primary",
                           "content": "padding — 16px",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1929,7 +1978,8 @@
                           "fill": "$text-primary",
                           "content": "gap — 16px",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1957,7 +2007,8 @@
                           "fill": "$text-primary",
                           "content": "margin — 24px",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -1985,7 +2036,8 @@
                           "fill": "$text-primary",
                           "content": "card padding — 24px",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -2013,7 +2065,8 @@
                           "fill": "$text-primary",
                           "content": "section gap — 40px",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -2041,7 +2094,8 @@
                           "fill": "$text-primary",
                           "content": "page padding — 64px",
                           "fontFamily": "$font-sans",
-                          "fontSize": 13
+                          "fontSize": 13,
+                          "fontWeight": "normal"
                         }
                       ]
                     }
@@ -2076,7 +2130,8 @@
               "fill": "$text-secondary",
               "content": "From sharp containers to fully-capsule pills.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -2127,7 +2182,8 @@
                       "fill": "$text-secondary",
                       "content": "0px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2136,7 +2192,8 @@
                       "fill": "$text-secondary",
                       "content": "Tables, dividers",
                       "fontFamily": "$font-sans",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2177,7 +2234,8 @@
                       "fill": "$text-secondary",
                       "content": "4px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2186,7 +2244,8 @@
                       "fill": "$text-secondary",
                       "content": "Inputs, small badges",
                       "fontFamily": "$font-sans",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2227,7 +2286,8 @@
                       "fill": "$text-secondary",
                       "content": "8px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2236,7 +2296,8 @@
                       "fill": "$text-secondary",
                       "content": "Cards, modals, panels",
                       "fontFamily": "$font-sans",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2277,7 +2338,8 @@
                       "fill": "$text-secondary",
                       "content": "12px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2286,7 +2348,8 @@
                       "fill": "$text-secondary",
                       "content": "Large cards, dialogs",
                       "fontFamily": "$font-sans",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2327,7 +2390,8 @@
                       "fill": "$text-secondary",
                       "content": "16px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2336,7 +2400,8 @@
                       "fill": "$text-secondary",
                       "content": "Hero containers",
                       "fontFamily": "$font-sans",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2377,7 +2442,8 @@
                       "fill": "$text-secondary",
                       "content": "9999px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2386,7 +2452,8 @@
                       "fill": "$text-secondary",
                       "content": "Buttons, pills, badges",
                       "fontFamily": "$font-sans",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -2419,7 +2486,8 @@
               "fill": "$text-secondary",
               "content": "Subtle card shadows, focus rings, and phase-colored glows.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -2466,7 +2534,8 @@
                       "width": "fill_container",
                       "content": "box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 10
+                      "fontSize": 10,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "rectangle",
@@ -2512,7 +2581,8 @@
                       "width": "fill_container",
                       "content": "box-shadow: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 10
+                      "fontSize": 10,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "rectangle",
@@ -2558,7 +2628,8 @@
                       "width": "fill_container",
                       "content": "box-shadow: 0 10px 25px rgba(0,0,0,0.12), 0 4px 10px rgba(0,0,0,0.08)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 10
+                      "fontSize": 10,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "rectangle",
@@ -2611,7 +2682,8 @@
                       "fill": "$text-secondary",
                       "content": "2px #1A73E8, offset 2px",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2646,7 +2718,8 @@
                       "fill": "$text-secondary",
                       "content": "0 0 16px rgba(229,57,53,0.25)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2681,7 +2754,8 @@
                       "fill": "$text-secondary",
                       "content": "0 0 16px rgba(67,160,71,0.25)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2716,7 +2790,8 @@
                       "fill": "$text-secondary",
                       "content": "0 0 16px rgba(30,136,229,0.25)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 11
+                      "fontSize": 11,
+                      "fontWeight": "normal"
                     }
                   ]
                 }
@@ -2749,7 +2824,8 @@
               "fill": "$text-secondary",
               "content": "Easing tokens for consistent micro-interactions.",
               "fontFamily": "$font-sans",
-              "fontSize": 14
+              "fontSize": 14,
+              "fontWeight": "normal"
             },
             {
               "type": "frame",
@@ -2855,7 +2931,8 @@
                       "fill": "$text-primary",
                       "content": "150ms",
                       "fontFamily": "$font-mono",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2864,7 +2941,8 @@
                       "fill": "$text-primary",
                       "content": "cubic-bezier(0.4, 0, 0.2, 1)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2873,7 +2951,8 @@
                       "fill": "$text-secondary",
                       "content": "Button hover, icon color, toggle state",
                       "fontFamily": "$font-sans",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2910,7 +2989,8 @@
                       "fill": "$text-primary",
                       "content": "200ms",
                       "fontFamily": "$font-mono",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2919,7 +2999,8 @@
                       "fill": "$text-primary",
                       "content": "cubic-bezier(0.4, 0, 0.2, 1)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2928,7 +3009,8 @@
                       "fill": "$text-secondary",
                       "content": "Card hover, expansion, focus ring",
                       "fontFamily": "$font-sans",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -2965,7 +3047,8 @@
                       "fill": "$text-primary",
                       "content": "300ms",
                       "fontFamily": "$font-mono",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2974,7 +3057,8 @@
                       "fill": "$text-primary",
                       "content": "cubic-bezier(0.4, 0, 0.2, 1)",
                       "fontFamily": "$font-mono",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     },
                     {
                       "type": "text",
@@ -2983,7 +3067,8 @@
                       "fill": "$text-secondary",
                       "content": "Modal open/close, page transitions",
                       "fontFamily": "$font-sans",
-                      "fontSize": 13
+                      "fontSize": 13,
+                      "fontWeight": "normal"
                     }
                   ]
                 },
@@ -3054,7 +3139,8 @@
           "fill": "$text-secondary",
           "content": "#000000",
           "fontFamily": "$font-mono",
-          "fontSize": 12
+          "fontSize": 12,
+          "fontWeight": "normal"
         }
       ]
     }
@@ -3262,7 +3348,7 @@
     },
     "font-sans": {
       "type": "string",
-      "value": "Inter"
+      "value": "Noto Sans SC"
     },
     "font-mono": {
       "type": "string",

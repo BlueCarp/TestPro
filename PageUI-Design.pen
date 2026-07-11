@@ -38,14 +38,29 @@
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "MFKfW",
+              "type": "frame",
+              "id": "W5jVwy",
               "name": "AppTitle",
-              "fill": "$color-text-primary",
-              "content": "🍅 Pomodoro",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "600"
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "WtBaU",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "dq7vf",
+                  "name": "TitleText",
+                  "fill": "$color-text-primary",
+                  "content": "Pomodoro",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -58,14 +73,10 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "y22aaZ",
-                  "name": "GearIcon",
-                  "fill": "$color-text-secondary",
-                  "content": "⚙",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 18,
-                  "fontWeight": "normal"
+                  "id": "I35Fw",
+                  "type": "ref",
+                  "ref": "e1c66",
+                  "name": "GearIcon"
                 }
               ]
             }
@@ -183,14 +194,29 @@
           "justifyContent": "center",
           "children": [
             {
-              "type": "text",
-              "id": "qupfg",
+              "type": "frame",
+              "id": "kBAiV",
               "name": "PomodoroCounter",
-              "fill": "$color-text-secondary",
-              "content": "🍅 × 0",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "500"
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "cj5m2",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "pnADT",
+                  "name": "CountText",
+                  "fill": "$color-text-secondary",
+                  "content": "× 0",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
             }
           ]
         }
@@ -233,14 +259,29 @@
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "rjPzY",
+              "type": "frame",
+              "id": "W4AYSe",
               "name": "AppTitle",
-              "fill": "$color-text-primary",
-              "content": "🍅 Pomodoro",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "600"
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "SJ2Ix",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "Hc2vx",
+                  "name": "TitleText",
+                  "fill": "$color-text-primary",
+                  "content": "Pomodoro",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -253,14 +294,10 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "OYcbA",
-                  "name": "GearIcon",
-                  "fill": "$color-text-secondary",
-                  "content": "⚙",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 18,
-                  "fontWeight": "normal"
+                  "id": "HdOus",
+                  "type": "ref",
+                  "ref": "e1c66",
+                  "name": "GearIcon"
                 }
               ]
             }
@@ -397,14 +434,29 @@
           "justifyContent": "center",
           "children": [
             {
-              "type": "text",
-              "id": "Q5DohV",
+              "type": "frame",
+              "id": "c3tN1n",
               "name": "PomodoroCounter",
-              "fill": "$color-text-secondary",
-              "content": "🍅 × 0",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "500"
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "R4APS",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "kLkYa",
+                  "name": "CountText",
+                  "fill": "$color-text-secondary",
+                  "content": "× 0",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
             }
           ]
         }
@@ -447,14 +499,29 @@
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "leeoS",
+              "type": "frame",
+              "id": "IdVFX",
               "name": "AppTitle",
-              "fill": "$color-text-primary",
-              "content": "🍅 Pomodoro",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "600"
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "ONepN",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "yXQem",
+                  "name": "TitleText",
+                  "fill": "$color-text-primary",
+                  "content": "Pomodoro",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -467,14 +534,10 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "oHLeW",
-                  "name": "GearIcon",
-                  "fill": "$color-text-secondary",
-                  "content": "⚙",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 18,
-                  "fontWeight": "normal"
+                  "id": "EUtPq",
+                  "type": "ref",
+                  "ref": "e1c66",
+                  "name": "GearIcon"
                 }
               ]
             }
@@ -621,14 +684,29 @@
           "justifyContent": "center",
           "children": [
             {
-              "type": "text",
-              "id": "NmvS5",
+              "type": "frame",
+              "id": "ha3hu",
               "name": "PomodoroCounter",
-              "fill": "$color-text-secondary",
-              "content": "🍅 × 2",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "500"
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "ZvYys",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "J2N4h6",
+                  "name": "CountText",
+                  "fill": "$color-text-secondary",
+                  "content": "× 2",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
             }
           ]
         }
@@ -671,14 +749,29 @@
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "eDjYH",
+              "type": "frame",
+              "id": "O0mzf",
               "name": "AppTitle",
-              "fill": "$color-text-primary",
-              "content": "🍅 Pomodoro",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "600"
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "O5IZTE",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "m9uDuo",
+                  "name": "TitleText",
+                  "fill": "$color-text-primary",
+                  "content": "Pomodoro",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -691,14 +784,10 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "JUBhA",
-                  "name": "GearIcon",
-                  "fill": "$color-text-secondary",
-                  "content": "⚙",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 18,
-                  "fontWeight": "normal"
+                  "id": "XnBxv",
+                  "type": "ref",
+                  "ref": "e1c66",
+                  "name": "GearIcon"
                 }
               ]
             }
@@ -835,14 +924,29 @@
           "justifyContent": "center",
           "children": [
             {
-              "type": "text",
-              "id": "L7FTUi",
+              "type": "frame",
+              "id": "AUnBP",
               "name": "PomodoroCounter",
-              "fill": "$color-text-secondary",
-              "content": "🍅 × 1",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "500"
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "I4kNr",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "v4i4KA",
+                  "name": "CountText",
+                  "fill": "$color-text-secondary",
+                  "content": "× 1",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
             }
           ]
         }
@@ -885,14 +989,29 @@
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "MnbGl",
+              "type": "frame",
+              "id": "dfS8A",
               "name": "AppTitle",
-              "fill": "$color-text-primary",
-              "content": "🍅 Pomodoro",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "600"
+              "gap": 6,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "S1gfYb",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "TPHkD",
+                  "name": "TitleText",
+                  "fill": "$color-text-primary",
+                  "content": "Pomodoro",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "600"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -905,14 +1024,10 @@
               "alignItems": "center",
               "children": [
                 {
-                  "type": "text",
-                  "id": "zB9xw",
-                  "name": "GearIcon",
-                  "fill": "$color-text-secondary",
-                  "content": "⚙",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 18,
-                  "fontWeight": "normal"
+                  "id": "YSulR",
+                  "type": "ref",
+                  "ref": "e1c66",
+                  "name": "GearIcon"
                 }
               ]
             }
@@ -1049,14 +1164,29 @@
           "justifyContent": "center",
           "children": [
             {
-              "type": "text",
-              "id": "uMm4L",
+              "type": "frame",
+              "id": "FRzXa",
               "name": "PomodoroCounter",
-              "fill": "$color-text-secondary",
-              "content": "🍅 × 4",
-              "fontFamily": "$font-ui",
-              "fontSize": 14,
-              "fontWeight": "500"
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "SC5ta",
+                  "type": "ref",
+                  "ref": "XIiwg",
+                  "name": "TomatoIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "FHMjn",
+                  "name": "CountText",
+                  "fill": "$color-text-secondary",
+                  "content": "× 4",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
             }
           ]
         }
@@ -1098,17 +1228,32 @@
           "alignItems": "center",
           "children": [
             {
-              "type": "text",
-              "id": "NW049",
+              "type": "frame",
+              "id": "PbtuK",
               "layoutPosition": "absolute",
               "x": 16,
               "y": 12,
               "name": "BackButton",
-              "fill": "$color-text-secondary",
-              "content": "← 返回",
-              "fontFamily": "$font-ui",
-              "fontSize": 16,
-              "fontWeight": "500"
+              "gap": 4,
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "Jm4Z9",
+                  "type": "ref",
+                  "ref": "CwrBC",
+                  "name": "ArrowIcon"
+                },
+                {
+                  "type": "text",
+                  "id": "Wx8fU",
+                  "name": "BackText",
+                  "fill": "$color-text-secondary",
+                  "content": "返回",
+                  "fontFamily": "$font-ui",
+                  "fontSize": 16,
+                  "fontWeight": "500"
+                }
+              ]
             },
             {
               "type": "frame",
@@ -1159,14 +1304,29 @@
               "gap": "$space-sm",
               "children": [
                 {
-                  "type": "text",
-                  "id": "Jmmel",
+                  "type": "frame",
+                  "id": "ivdNO",
                   "name": "SectionTitle1",
-                  "fill": "$color-text-secondary",
-                  "content": "⏱ 计时时长",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 13,
-                  "fontWeight": "600"
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "o3cxm",
+                      "type": "ref",
+                      "ref": "oodRX",
+                      "name": "ClockIcon"
+                    },
+                    {
+                      "type": "text",
+                      "id": "bqhQ5",
+                      "name": "SecTitleText1",
+                      "fill": "$color-text-secondary",
+                      "content": "计时时长",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
                 },
                 {
                   "type": "frame",
@@ -1477,14 +1637,29 @@
               "gap": "$space-sm",
               "children": [
                 {
-                  "type": "text",
-                  "id": "j2kezv",
+                  "type": "frame",
+                  "id": "jzwdi",
                   "name": "SectionTitle2",
-                  "fill": "$color-text-secondary",
-                  "content": "🔔 通知",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 13,
-                  "fontWeight": "600"
+                  "gap": 6,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "id": "VHZ42",
+                      "type": "ref",
+                      "ref": "Q4udLP",
+                      "name": "BellIcon"
+                    },
+                    {
+                      "type": "text",
+                      "id": "MsgYy",
+                      "name": "SecTitleText2",
+                      "fill": "$color-text-secondary",
+                      "content": "通知",
+                      "fontFamily": "$font-ui",
+                      "fontSize": 13,
+                      "fontWeight": "600"
+                    }
+                  ]
                 },
                 {
                   "type": "frame",
@@ -1764,14 +1939,30 @@
       "alignItems": "center",
       "children": [
         {
-          "type": "text",
-          "id": "fY2oi",
+          "type": "frame",
+          "id": "y0Dro",
           "name": "ToastSuccessMessage",
-          "fill": "#FFFFFF",
-          "content": "✅ 设置已保存",
-          "fontFamily": "$font-ui",
-          "fontSize": 14,
-          "fontWeight": "500"
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "tpwUe",
+              "type": "ref",
+              "ref": "I2tdP7",
+              "name": "CheckIcon"
+            },
+            {
+              "type": "text",
+              "id": "Fdvh9",
+              "name": "ToastText1",
+              "fill": "#FFFFFF",
+              "content": "设置已保存",
+              "fontFamily": "$font-ui",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
         }
       ]
     },
@@ -1790,14 +1981,335 @@
       "alignItems": "center",
       "children": [
         {
-          "type": "text",
-          "id": "PbdhW",
+          "type": "frame",
+          "id": "XPMLC",
           "name": "ToastErrorMessage",
+          "gap": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "mK9mP",
+              "type": "ref",
+              "ref": "ttQLa",
+              "name": "WarnIcon"
+            },
+            {
+              "type": "text",
+              "id": "llIwB",
+              "name": "ToastText2",
+              "fill": "#FFFFFF",
+              "content": "请输入有效的时长（1–120 分钟）",
+              "fontFamily": "$font-ui",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "e1c66",
+      "x": 0,
+      "y": -180,
+      "name": "IconGear",
+      "reusable": true,
+      "width": 18,
+      "height": 18,
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "fOkow",
+          "x": 1,
+          "y": 1,
+          "name": "GearRing",
+          "innerRadius": 0.65,
+          "width": 16,
+          "height": 16,
+          "stroke": "$color-text-secondary",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 1,
+          "id": "pMdaa",
+          "x": 5,
+          "y": 8,
+          "name": "GearCrossH",
+          "fill": "$color-text-secondary",
+          "width": 8,
+          "height": 2
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 1,
+          "id": "WmwaX",
+          "x": 8,
+          "y": 5,
+          "name": "GearCrossV",
+          "fill": "$color-text-secondary",
+          "width": 2,
+          "height": 8
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "XIiwg",
+      "x": 50,
+      "y": -180,
+      "name": "IconTomato",
+      "reusable": true,
+      "width": 16,
+      "height": 16,
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "L6QjmL",
+          "x": 1,
+          "y": 4,
+          "name": "TomatoBody",
+          "fill": "#E53935",
+          "width": 14,
+          "height": 11
+        },
+        {
+          "type": "polygon",
+          "polygonCount": 3,
+          "id": "xOzGL",
+          "x": 5,
+          "y": 0,
+          "name": "TomatoLeaf",
+          "fill": "#43A047",
+          "width": 6,
+          "height": 5
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "oodRX",
+      "x": 100,
+      "y": -180,
+      "name": "IconClock",
+      "reusable": true,
+      "width": 16,
+      "height": 16,
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "WbCzH",
+          "x": 1,
+          "y": 1,
+          "name": "ClockFace",
+          "width": 14,
+          "height": 14,
+          "stroke": "$color-text-secondary",
+          "strokeWidth": 1.5
+        },
+        {
+          "type": "path",
+          "id": "K6HZIq",
+          "x": 0,
+          "y": 0,
+          "name": "ClockHands",
+          "geometry": "M8 8l0-5m0 5l3-2",
+          "viewBox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "width": 16,
+          "height": 16,
+          "stroke": "$color-text-secondary",
+          "strokeWidth": 1.5,
+          "strokeLinecap": "round"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Q4udLP",
+      "x": 150,
+      "y": -180,
+      "name": "IconBell",
+      "reusable": true,
+      "width": 16,
+      "height": 16,
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "rQ6CM",
+          "x": 0,
+          "y": 0,
+          "name": "BellBody",
+          "geometry": "M4 10l0-4a4 4 0 0 1 8 0l0 4",
+          "viewBox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "width": 16,
+          "height": 16,
+          "stroke": "$color-text-secondary",
+          "strokeWidth": 1.5,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "path",
+          "id": "Hx1LY",
+          "x": 0,
+          "y": 0,
+          "name": "BellBottom",
+          "geometry": "M3.5 10q4.5 2.5 9 0",
+          "viewBox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "width": 16,
+          "height": 16,
+          "stroke": "$color-text-secondary",
+          "strokeWidth": 1.5,
+          "strokeLinecap": "round"
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 1,
+          "id": "eolkj",
+          "x": 7,
+          "y": 10.5,
+          "name": "BellClapper",
+          "fill": "$color-text-secondary",
+          "width": 2,
+          "height": 2.5
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "I2tdP7",
+      "x": 200,
+      "y": -180,
+      "name": "IconCheck",
+      "reusable": true,
+      "width": 16,
+      "height": 16,
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "m8UKQn",
+          "x": 0,
+          "y": 0,
+          "name": "CheckPath",
+          "geometry": "M3 8l3 4 7-8",
+          "viewBox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "width": 16,
+          "height": 16,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 2,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ttQLa",
+      "x": 250,
+      "y": -180,
+      "name": "IconWarning",
+      "reusable": true,
+      "width": 16,
+      "height": 16,
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "ojliE",
+          "x": 0,
+          "y": 0,
+          "name": "WarningTri",
+          "geometry": "M8 1.5l6.5 12.5-13 0z",
+          "viewBox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "width": 16,
+          "height": 16,
+          "stroke": "#FFFFFF",
+          "strokeWidth": 1.5,
+          "strokeLinejoin": "round"
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 1,
+          "id": "UoEYF",
+          "x": 7,
+          "y": 5.5,
+          "name": "WarnExclBar",
           "fill": "#FFFFFF",
-          "content": "⚠ 请输入有效的时长（1–120 分钟）",
-          "fontFamily": "$font-ui",
-          "fontSize": 14,
-          "fontWeight": "500"
+          "width": 2,
+          "height": 4.5
+        },
+        {
+          "type": "ellipse",
+          "id": "mJ2xx",
+          "x": 7,
+          "y": 11,
+          "name": "WarnExclDot",
+          "fill": "#FFFFFF",
+          "width": 2,
+          "height": 2
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "CwrBC",
+      "x": 300,
+      "y": -180,
+      "name": "IconArrowLeft",
+      "reusable": true,
+      "width": 16,
+      "height": 16,
+      "layout": "none",
+      "children": [
+        {
+          "type": "path",
+          "id": "kxi3X",
+          "x": 0,
+          "y": 0,
+          "name": "ArrowPath",
+          "geometry": "M13 2l-9 6 9 6",
+          "viewBox": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "width": 16,
+          "height": 16,
+          "stroke": "$color-text-secondary",
+          "strokeWidth": 2,
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round"
         }
       ]
     }

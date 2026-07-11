@@ -58,7 +58,7 @@ colors:
     overlay:       "rgba(0,0,0,0.6)"
 
 typography:
-  font-family: "'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif"
+  font-family: "'Noto Sans SC', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif"
   monospace:  "'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace"
   
   # 字体缩放 (Modular Scale: 1.25 — Major Third)
@@ -606,14 +606,16 @@ transition:
 
 | 图标 | 来源 | 尺寸 | 用途 | 无障碍 |
 |------|------|------|------|--------|
-| 设置 (齿轮) | Heroicons `outline/cog-6-tooth` | 24×24px | 打开设置 | `aria-label="设置"` |
-| 返回 (左箭头) | Heroicons `outline/arrow-left` | 24×24px | 返回计时器页 | `aria-label="返回"` |
-| 番茄表情 | emoji 🍅 | 1rem | 番茄计数 | `role="img" aria-label="番茄钟"` |
+| 设置 (齿轮) | 自定义 SVG（圆形外圈 + 十字交叉线） | 18×18px | 打开设置 | `aria-label="设置"` |
+| 返回 (左箭头) | 自定义 SVG（V形箭头 `M13 2 L4 8 L13 14`） | 16×16px | 返回计时器页 | `aria-label="返回"` |
+| 番茄图标 | 自定义 SVG（红色椭圆 + 绿色叶子） | 16×16px | 番茄计数 + 标题栏 | `aria-label="番茄钟"` |
+| 计时时长图标 | 自定义 SVG（圆形钟面 + 指针） | 16×16px | 设置页分组标题 | `aria-hidden="true"` |
+| 通知图标 | 自定义 SVG（钟形 + 底部弧线） | 16×16px | 设置页分组标题 | `aria-hidden="true"` |
 | 加载旋转 | 自定义 SVG 的 `circle` 旋转动画 | 16×16px | 按钮 loading | `aria-hidden="true"` |
-| 成功 | Heroicons `outline/check-circle` | 20×20px | Toast 成功 | `aria-hidden="true"` |
-| 错误 | Heroicons `outline/exclamation-circle` | 20×20px | Toast 错误 | `aria-hidden="true"` |
+| 成功 | 自定义 SVG（对勾 `M3 8 L6 12 L13 4`） | 16×16px | Toast 成功 | `aria-hidden="true"` |
+| 错误 | 自定义 SVG（三角形感叹号） | 16×16px | Toast 错误 | `aria-hidden="true"` |
 
-> **图标风格一致性**：全部使用 Heroicons Outline 风格（1.5px 描边），确保视觉统一。
+> **图标风格一致性**：全部使用 1.5-2px 描边长圆角自定义 SVG，确保视觉统一。所有 UI 图标已替换 emoji 为 SVG 组件。
 
 ---
 

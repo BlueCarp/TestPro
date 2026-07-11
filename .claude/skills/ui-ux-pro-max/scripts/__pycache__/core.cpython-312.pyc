@@ -1,71 +1,0 @@
-�
-��ji0��h�dZddlZddlZddlmZddlmZddlmZee	�jjdzZdZdgd	�gd
-�d�dddggd�d�dgd�gd�d�dgd�gd�d�dgd�gd�d�dgd�gd�d�dgd�gd�d�dgd �gd!�d�d"gd#�gd�d�d$gd#�gd�d�d%gd&�gd'�d�d(�Zid)d*d+i�d,d*d-i�d.d*d/i�d0d*d1i�d2d*d3i�d4d*d5i�d6d*d7i�d8d*d9i�d:d*d;i�d<d*d=i�d>d*d?i�d@d*dAi�dBd*dCi�dDd*dEi�dFd*dGi�dHd*dIi�ZgdJ�gdK�dL�Zeej#��ZGdM�dN�ZdO�ZdP�ZdQ�ZdefdR�ZefdS�Zy)Tz@
-UI/UX Pro Max Core - BM25 search engine for UI/UX style guides
-�N)�Path)�log)�defaultdict�data�z
-styles.csv)�Style Category�Keywords�Best For�Type�AI Prompt Keywords)rrr	zPrimary ColorszEffects & Animationr
-uLight Mode ✓uDark Mode ✓�Performance�AccessibilityzFramework Compatibility�
-ComplexityrzCSS/Technical KeywordszImplementation ChecklistzDesign System Variables)�file�search_cols�output_colsz
-colors.csv�Product Type�Notes)r�Primaryz
-On Primary�	SecondaryzOn Secondary�Accentz	On Accent�
-Background�
-Foreground�CardzCard Foreground�MutedzMuted Foreground�Border�DestructivezOn Destructive�Ringrz
-charts.csv)�	Data Typer	�Best Chart Type�When to Use�When NOT to Use�Accessibility Notes)rr	r zSecondary Optionsr!r"zData Volume ThresholdzColor GuidancezAccessibility Grader#zA11y FallbackzLibrary RecommendationzInteractive Levelzlanding.csv)�Pattern Namer	�Conversion Optimization�Section Order)r$r	r&zPrimary CTA PlacementzColor Strategyr%zproducts.csv)rr	�Primary Style RecommendationzKey Considerations)rr	r'zSecondary StyleszLanding Page PatternzDashboard Style (if applicable)zColor Palette Focuszux-guidelines.csv)�Category�Issue�Description�Platform)	r(r)r+r*�Do�Don'tzCode Example GoodzCode Example Bad�Severityztypography.csv)�Font Pairing Namer(�Mood/Style Keywordsr
-�Heading Font�	Body Font)
-r/r(r1r2r0r
-�Google Fonts URLz
-CSS ImportzTailwind Configrz	icons.csv)r(�	Icon Namer	r
-)r(r4r	�LibraryzImport Code�Usager
-�Stylezreact-performance.csv)r(r)r	r*zapp-interface.csvzgoogle-fonts.csv)�Familyr(�Stroke�Classificationsr	�Subsets�	Designers)
-r8r(r9r:�StyleszVariable Axesr;r<zPopularity Rankr3)�style�color�chart�landing�product�ux�
-typography�icons�react�web�google-fontsrFrzstacks/react.csv�nextjszstacks/nextjs.csv�vuezstacks/vue.csv�sveltezstacks/svelte.csv�astrozstacks/astro.csv�swiftuizstacks/swiftui.csvzreact-nativezstacks/react-native.csv�flutterzstacks/flutter.csv�nuxtjszstacks/nuxtjs.csvznuxt-uizstacks/nuxt-ui.csvzhtml-tailwindzstacks/html-tailwind.csv�shadcnzstacks/shadcn.csvzjetpack-composezstacks/jetpack-compose.csv�threejszstacks/threejs.csv�angularzstacks/angular.csv�laravelzstacks/laravel.csv)r(�	Guideliner*r,r-)	r(rTr*r,r-z	Code GoodzCode Badr.zDocs URL)rrc�*�eZdZdZdd�Zd�Zd�Zd�Zy)�BM25z&BM25 ranking algorithm for text searchc���||_||_g|_g|_d|_i|_tt�|_d|_	y)Nr)
-�k1�b�corpus�doc_lengths�avgdl�idfr�int�	doc_freqs�N)�selfrXrYs   �8/Users/leon/.agents/skills/ui-ux-pro-max/scripts/core.py�__init__zBM25.__init__ks@����������������
-����$�S�)������c���tjddt|�j��}|j	�D�cgc]}t|�dkDs�|��c}Scc}w)z8Lowercase, split, remove punctuation, filter short wordsz[^\w\s]� �)�re�sub�str�lower�split�len)ra�text�ws   rb�tokenizezBM25.tokenizeusG���v�v�j�#�s�4�y���'8�9���:�:�<�6�<�a�3�q�6�A�:��<�6�6��6s�A�Ac���|D�cgc]}|j|���c}|_t|j�|_|jdk(ry|jD�cgc]}t|���c}|_t|j�|jz|_|jD]@}t�}|D]/}||vs�|j|xxdzcc<|j|��1�B|jj�D]6\}}t|j|z
-dz|dzzdz�|j|<�8ycc}wcc}w)zBuild BM25 index from documentsrN�g�?)rprZrmr`r[�sumr\�setr_�add�itemsrr])ra�	documents�doc�seen�word�freqs      rb�fitzBM25.fitzs��5>�?�Y�c�t�}�}�S�)�Y�?����T�[�[�!����6�6�Q�;��04���<���C��H��<�����)�)�*�T�V�V�3��
-��;�;�C��5�D����t�#��N�N�4�(�A�-�(��H�H�T�N����.�.�.�.�0�J�D�$� �$�&�&�4�-�#�"5�$��*�!E��!I�J�D�H�H�T�N�1��@��=s�E�Ec��|j|�}g}t|j�D]�\}}d}|j|}t	t
-�}|D]}	||	xxdzcc<�|D]~}
-|
-|jvs�||
-}|j|
-}||jdzz}||jd|jz
-|j|z|jzzzz}|||z|zz}��|j||f���t|d�d��S)z!Score all documents against queryrrrc��|dS)Nrr�)�xs rb�<lambda>zBM25.score.<locals>.<lambda>�s��A�a�DrdT)�key�reverse)rp�	enumeraterZr[rr^r]rXrYr\�append�sorted)ra�query�query_tokens�scores�idxrx�score�doc_len�
-term_freqsrz�token�tfr]�	numerator�denominators               rbr�z
-BM25.score�s���}�}�U�+����!�$�+�+�.�H�C���E��&�&�s�+�G�$�S�)�J����4� �A�%� ��&���D�H�H�$�#�E�*�B��(�(�5�/�C� "�d�g�g��k� 2�I�"$�t�w�w�!�d�f�f�*�t�v�v��?O�RV�R\�R\�?\�2\�']�"]�K��S�9�_�{�:�:�E�&��M�M�3��,�'�/�"�f�.�$�?�?rdN)g�?g�?)�__name__�
-__module__�__qualname__�__doc__rcrpr|r�rrdrbrVrVhs��0��7�
-K�&@rdrVc���t|dd��5}ttj|��cddd�S#1swYyxYw)z!Load CSV and return list of dicts�rzutf-8)�encodingN)�open�list�csv�
-DictReader)�filepath�fs  rb�	_load_csvr��s-��	�h��g�	.�!��C�N�N�1�%�&�
-/�	.�	.�s	�7�Ac����|j�sgSt|�}|D��cgc]�dj�fd�|D����}}t�}|j	|�|j|�}	g}
-|	d|D]E\}}|dkDs�||�|
-j|D�cic]}|�vs�|�j|d���c}��G|
-Scc}wcc}w)zCore search function using BM25rfc3�T�K�|]}t�j|d�����!y�w)�N)rj�get)�.0�col�rows  �rb�	<genexpr>z_search_csv.<locals>.<genexpr>�s"�����G�;�C�#�c�g�g�c�2�.�/�;�s�%(Nrr�)�existsr��joinrVr|r�r�r�)r�rrr��max_resultsrr�rw�bm25�ranked�resultsr�r�r�s      `       rb�_search_csvr��s�����?�?���	��X��D�TX�X�SW�C����G�;�G�G�SW�I�X��6�D��H�H�Y���Z�Z���F��G��\�k�*�
-��U��1�9��s�)�C��N�N�[�W�[�c�C�SV�J�C�����b�!1�1�[�W�X�+�
-�N��Y��Xs�!C�	C	
-�$C	
-c�(��|j��gd�gd�gd�gd�gd�gd�gd�gd�gd	�gd
-�gd�d�}|j�D��cic]\}}|t�fd�|D����}}}t||j��}||dkDr|SdScc}}w)z/Auto-detect the most relevant domain from query)r?�palette�hex�#�rgbr��semantic�accent�destructive�muted�
-foreground)	r@�graph�visualization�trend�bar�pie�scatter�heatmap�funnel)rA�page�cta�
-conversion�hero�testimonial�pricing�section)R�saas�	ecommercez
-e-commerce�fintech�
-healthcare�gaming�	portfolio�crypto�	dashboard�fitness�
-restaurant�hotel�travel�music�	education�learning�legal�	insurance�medical�beauty�pharmacy�dental�pet�dating�wedding�recipe�delivery�ride�booking�calendar�timer�tracker�diary�note�chat�	messenger�crm�invoice�parking�transit�vpn�alarm�weather�sleep�
-meditation�fasting�habit�grocery�meme�wardrobez
-plant care�reading�	flashcard�puzzle�trivia�arcade�photography�	streaming�podcast�
-newsletter�marketplace�
-freelancer�	coworking�airline�museum�theater�churchz
-non-profit�charity�kindergarten�daycarezsenior care�
-veterinary�florist�bakery�brewery�construction�
-automotivezreal estate�	logistics�agriculturezcoding bootcamp)r>�design�ui�
-minimalism�glassmorphism�neumorphism�	brutalismz	dark mode�flat�aurora�prompt�css�implementation�variable�	checklist�tailwind)
-rC�	usability�accessibility�wcag�touch�scroll�	animation�keyboard�
-navigation�mobile)zfont pairingztypography pairingzheading fontz	body font)zgoogle fontzfont familyzfont weightz
-font stylezvariable font�notozfont forz	find fontzfont subsetzfont languagezmonospace fontz
-serif fontzsans serif fontzdisplay fontzhandwriting font�fontrD�serif�sans)�iconrE�lucide�	heroicons�symbol�glyph�	pictogramzsvg icon)rFznext.jsrI�suspense�memo�usecallback�	useeffect�rerender�bundle�	waterfall�barrelzdynamic import�rsczserver component)	�aria�focus�outliner��
-virtualize�autocomplete�formz
-input type�
-preconnect)r?r@rArBr>rCrDrHrErFrGc3���K�|]6}tjdtj|�zdz��s�3d���8y�w)z\brrN)rh�search�escape)r��kw�query_lowers  �rbr�z detect_domain.<locals>.<genexpr>�s3�����h�h��"�)�)�E�B�I�I�b�M�<Q�TY�<Y�[f�2g�!�h�s�4?�?)r�rr>)rkrvrs�maxr�)r��domain_keywords�domain�keywordsr��bestrIs      @rb�detect_domainrO�s�����+�+�-�K�~�k�h��M�~�Y�d�e�z�y��O�BQ�BW�BW�BY�Z�BY�m}�ms�u}�f�c�h�h�h�h�h�BY�F�Z��v�6�:�:�&�D��$�<�!�#�4�0��0��Zs�	Bc���|�t|�}tj|td�}t|dz}|j	�sd|��|d�St||d|d||�}|||dt|�|d�S)z/Main search function with auto-domain detectionr>rzFile not found: )�errorrLrr)rLr�r�countr�)rO�
-CSV_CONFIGr��DATA_DIRr�r�rm)r�rLr��configr�r�s      rbrFrF�s����~��u�%���^�^�F�J�w�$7�8�F��&��.�(�H��?�?��+�H�:�6�&�I�I��(�F�=�$9�6�-�;P�RW�Yd�e�G����v���W����rdc��|tvrdd|�ddjt���iStt|dz}|j	�sd|��|d�St|tdtd	||�}d
-||t|dt|�|d�S)z Search stack-specific guidelinesrQzUnknown stack: z. Available: z, rzStack file not found: )rQ�stackrrrW)rLrWr�rrRr�)�STACK_CONFIGr��AVAILABLE_STACKSrTr�r��_STACK_COLSrm)r�rWr�r�r�s     rb�search_stackr[�s����L� ��?�5�'��t�y�y�IY�?Z�>[�\�]�]��,�u�-�f�5�5�H��?�?��1�(��<�u�M�M��(�K��$>��M�@Z�\a�cn�o�G�����U�#�F�+��W����rd)r�r�rh�pathlibr�mathr�collectionsr�__file__�parentrT�MAX_RESULTSrSrXrZr��keysrYrVr�r�rOrFr[rrdrb�<module>rcs�����	���#���>� � �'�'�&�0�����_�F���&��0�E���|�T���_�K���i�z��$�G�L��!�x�w���H�t��(�G�L��$�G�L��#�n�e��g8�
-�t���!3�4����!4�5��
-��!1�2����!4�5�	�
-��!3�4����!5�6����!:�;����!5�6����!4�5����!5�6����!;�<����!4�5����!=�>����!5�6����!5�6�� ��!5�6�!��*K�{���
-��)�)�+�,��;@�;@�~'��21�.�;��,,7�rd

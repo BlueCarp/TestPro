@@ -1249,51 +1249,10 @@
           "type": "frame",
           "id": "wKH2S",
           "name": "TitleBar",
-          "width": "fill_container",
+          "width": 400,
           "height": 48,
-          "padding": [
-            0,
-            "$space-md"
-          ],
-          "alignItems": "center",
+          "layout": "none",
           "children": [
-            {
-              "type": "frame",
-              "id": "PbtuK",
-              "layoutPosition": "absolute",
-              "x": 16,
-              "y": 12,
-              "name": "BackButton",
-              "gap": 4,
-              "alignItems": "center",
-              "children": [
-                {
-                  "id": "d9Aoxg",
-                  "type": "ref",
-                  "ref": "Q89CgJ",
-                  "name": "ArrowIcon",
-                  "width": 16,
-                  "height": 16
-                },
-                {
-                  "type": "text",
-                  "id": "Wx8fU",
-                  "name": "BackText",
-                  "fill": "$color-text-secondary",
-                  "content": "返回",
-                  "fontFamily": "$font-ui",
-                  "fontSize": 16,
-                  "fontWeight": "500"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "W4FMf",
-              "name": "TitleSpacer",
-              "width": "fill_container",
-              "height": 1
-            },
             {
               "type": "text",
               "id": "SiMgI",
@@ -1306,6 +1265,37 @@
               "fontFamily": "$font-ui",
               "fontSize": 16,
               "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "Wx8fU",
+              "x": 47,
+              "y": 12,
+              "name": "BackText",
+              "fill": "$color-text-secondary",
+              "content": "返回",
+              "fontFamily": "$font-ui",
+              "fontSize": 16,
+              "fontWeight": "500"
+            },
+            {
+              "type": "frame",
+              "id": "PbtuK",
+              "layoutPosition": "absolute",
+              "x": 16,
+              "y": 12.5,
+              "name": "BackButton",
+              "alignItems": "center",
+              "children": [
+                {
+                  "id": "d9Aoxg",
+                  "type": "ref",
+                  "ref": "Q89CgJ",
+                  "name": "ArrowIcon",
+                  "width": 16,
+                  "height": 16
+                }
+              ]
             }
           ]
         },
@@ -1348,7 +1338,18 @@
                       "ref": "mMmnu",
                       "name": "ClockIcon",
                       "width": 16,
-                      "height": 16
+                      "height": 16,
+                      "fill": [],
+                      "descendants": {
+                        "tM9k2": {
+                          "flipX": false,
+                          "flipY": false,
+                          "width": 16,
+                          "height": 16,
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
                     },
                     {
                       "type": "text",
@@ -1369,6 +1370,8 @@
                   "width": "fill_container",
                   "fill": "$color-background",
                   "cornerRadius": "$radius-md",
+                  "stroke": "$color-border",
+                  "strokeWidth": 1,
                   "layout": "vertical",
                   "padding": "$space-md",
                   "children": [
@@ -1404,10 +1407,9 @@
                               "name": "WorkMinusBtn",
                               "width": 28,
                               "height": 28,
-                              "fill": "$color-background",
-                              "cornerRadius": "$radius-sm",
+                              "fill": "$color-primary-light",
+                              "cornerRadius": "$radius-full",
                               "stroke": "$color-border",
-                              "strokeWidth": 1,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -1415,7 +1417,7 @@
                                   "type": "text",
                                   "id": "pZks5",
                                   "name": "WorkMinusLabel",
-                                  "fill": "$color-text-primary",
+                                  "fill": "$color-primary",
                                   "content": "−",
                                   "fontFamily": "$font-ui",
                                   "fontSize": 14,
@@ -1439,10 +1441,9 @@
                               "name": "WorkPlusBtn",
                               "width": 28,
                               "height": 28,
-                              "fill": "$color-background",
-                              "cornerRadius": "$radius-sm",
+                              "fill": "$color-primary-light",
+                              "cornerRadius": "$radius-full",
                               "stroke": "$color-border",
-                              "strokeWidth": 1,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -1450,7 +1451,7 @@
                                   "type": "text",
                                   "id": "qA78c",
                                   "name": "WorkPlusLabel",
-                                  "fill": "$color-text-primary",
+                                  "fill": "$color-primary",
                                   "content": "+",
                                   "fontFamily": "$font-ui",
                                   "fontSize": 14,
@@ -1502,10 +1503,9 @@
                               "name": "ShortBreakMinusBtn",
                               "width": 28,
                               "height": 28,
-                              "fill": "$color-background",
-                              "cornerRadius": "$radius-sm",
+                              "fill": "$color-primary-light",
+                              "cornerRadius": "$radius-full",
                               "stroke": "$color-border",
-                              "strokeWidth": 1,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -1513,7 +1513,7 @@
                                   "type": "text",
                                   "id": "TpwhP",
                                   "name": "ShortBreakMinusLabel",
-                                  "fill": "$color-text-primary",
+                                  "fill": "$color-primary",
                                   "content": "−",
                                   "fontFamily": "$font-ui",
                                   "fontSize": 14,
@@ -1537,10 +1537,9 @@
                               "name": "ShortBreakPlusBtn",
                               "width": 28,
                               "height": 28,
-                              "fill": "$color-background",
-                              "cornerRadius": "$radius-sm",
+                              "fill": "$color-primary-light",
+                              "cornerRadius": "$radius-full",
                               "stroke": "$color-border",
-                              "strokeWidth": 1,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -1548,7 +1547,7 @@
                                   "type": "text",
                                   "id": "z98Pw",
                                   "name": "ShortBreakPlusLabel",
-                                  "fill": "$color-text-primary",
+                                  "fill": "$color-primary",
                                   "content": "+",
                                   "fontFamily": "$font-ui",
                                   "fontSize": 14,
@@ -1600,10 +1599,9 @@
                               "name": "LongBreakMinusBtn",
                               "width": 28,
                               "height": 28,
-                              "fill": "$color-background",
-                              "cornerRadius": "$radius-sm",
+                              "fill": "$color-primary-light",
+                              "cornerRadius": "$radius-full",
                               "stroke": "$color-border",
-                              "strokeWidth": 1,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -1611,7 +1609,7 @@
                                   "type": "text",
                                   "id": "GcGyl",
                                   "name": "LongBreakMinusLabel",
-                                  "fill": "$color-text-primary",
+                                  "fill": "$color-primary",
                                   "content": "−",
                                   "fontFamily": "$font-ui",
                                   "fontSize": 14,
@@ -1635,10 +1633,9 @@
                               "name": "LongBreakPlusBtn",
                               "width": 28,
                               "height": 28,
-                              "fill": "$color-background",
-                              "cornerRadius": "$radius-sm",
+                              "fill": "$color-primary-light",
+                              "cornerRadius": "$radius-full",
                               "stroke": "$color-border",
-                              "strokeWidth": 1,
                               "justifyContent": "center",
                               "alignItems": "center",
                               "children": [
@@ -1646,7 +1643,7 @@
                                   "type": "text",
                                   "id": "vst1m",
                                   "name": "LongBreakPlusLabel",
-                                  "fill": "$color-text-primary",
+                                  "fill": "$color-primary",
                                   "content": "+",
                                   "fontFamily": "$font-ui",
                                   "fontSize": 14,
@@ -1683,7 +1680,18 @@
                       "ref": "sDqgN",
                       "name": "BellIcon",
                       "width": 16,
-                      "height": 16
+                      "height": 16,
+                      "fill": [],
+                      "descendants": {
+                        "GoYN0": {
+                          "width": 16,
+                          "height": 16,
+                          "flipX": false,
+                          "flipY": false,
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
                     },
                     {
                       "type": "text",
@@ -1704,6 +1712,8 @@
                   "width": "fill_container",
                   "fill": "$color-background",
                   "cornerRadius": "$radius-md",
+                  "stroke": "$color-border",
+                  "strokeWidth": 1,
                   "layout": "vertical",
                   "padding": "$space-md",
                   "children": [
@@ -1741,6 +1751,7 @@
                             20
                           ],
                           "justifyContent": "center",
+                          "alignItems": "center",
                           "children": [
                             {
                               "type": "ellipse",
@@ -1748,7 +1759,17 @@
                               "name": "SoundToggleThumb",
                               "fill": "#FFFFFF",
                               "width": 20,
-                              "height": 20
+                              "height": 20,
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#00000026",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 1
+                                },
+                                "blur": 2
+                              }
                             }
                           ]
                         }
@@ -1796,6 +1817,7 @@
                             20
                           ],
                           "justifyContent": "center",
+                          "alignItems": "center",
                           "children": [
                             {
                               "type": "ellipse",
@@ -1803,7 +1825,17 @@
                               "name": "DesktopNotifToggleThumb",
                               "fill": "#FFFFFF",
                               "width": 20,
-                              "height": 20
+                              "height": 20,
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#00000026",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 1
+                                },
+                                "blur": 2
+                              }
                             }
                           ]
                         }
@@ -1830,6 +1862,16 @@
                   "height": 48,
                   "fill": "$color-primary",
                   "cornerRadius": "$radius-full",
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#e539354d",
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "blur": 12
+                  },
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
@@ -1838,7 +1880,7 @@
                       "id": "mtqRT",
                       "name": "SaveBtnLabel",
                       "fill": "$color-text-on-primary",
-                      "content": "保 存 设 置",
+                      "content": "保存设置",
                       "fontFamily": "$font-ui",
                       "fontSize": 16,
                       "fontWeight": "600"
@@ -1862,7 +1904,7 @@
                       "id": "yhtn5",
                       "name": "ResetBtnLabel",
                       "fill": "$color-text-secondary",
-                      "content": "恢 复 默 认 设 置",
+                      "content": "恢复默认设置",
                       "fontFamily": "$font-ui",
                       "fontSize": 16,
                       "fontWeight": "600"
@@ -1991,7 +2033,13 @@
               "height": 16,
               "descendants": {
                 "ukWB4": {
-                  "stroke": "#FFFFFF"
+                  "stroke": "#FFFFFF",
+                  "flipX": false,
+                  "flipY": false,
+                  "width": 16,
+                  "height": 16,
+                  "x": 0,
+                  "y": 0
                 }
               }
             },
@@ -2041,7 +2089,13 @@
               "descendants": {
                 "gnSlX": {
                   "stroke": "#FFFFFF",
-                  "fill": "#FFFFFF"
+                  "fill": "#FFFFFF",
+                  "flipX": false,
+                  "flipY": false,
+                  "width": 16,
+                  "height": 16,
+                  "x": 0,
+                  "y": 0
                 }
               }
             },
@@ -2071,60 +2125,22 @@
       "layout": "none",
       "children": [
         {
-          "type": "ellipse",
-          "id": "z7fph3",
-          "x": 2.25,
-          "y": 2.25,
-          "name": "GearRing",
-          "innerRadius": 0.7,
-          "width": 19.5,
-          "height": 19.5,
-          "stroke": "$color-text-secondary",
-          "strokeWidth": 1.5
-        },
-        {
-          "type": "rectangle",
-          "cornerRadius": 1,
-          "id": "P6VUJC",
-          "x": 10,
-          "y": 0,
-          "name": "ToothTop",
-          "fill": "$color-text-secondary",
-          "width": 4,
-          "height": 4
-        },
-        {
-          "type": "rectangle",
-          "cornerRadius": 1,
-          "id": "bpnTM",
-          "x": 10,
-          "y": 20,
-          "name": "ToothBottom",
-          "fill": "$color-text-secondary",
-          "width": 4,
-          "height": 4
-        },
-        {
-          "type": "rectangle",
-          "cornerRadius": 1,
-          "id": "r6OyaY",
+          "type": "path",
+          "id": "Dj5Lm",
           "x": 0,
-          "y": 10,
-          "name": "ToothLeft",
+          "y": 0,
+          "name": "CogShape",
+          "geometry": "M9.594 3.94c0.09-0.542 0.56-0.94 1.11-0.94h2.593c0.55 0 1.02 0.398 1.11 0.94l0.213 1.281c0.063 0.374 0.313 0.686 0.645 0.87 0.074 0.04 0.147 0.083 0.22 0.127 0.324 0.196 0.72 0.257 1.075 0.124l1.217-0.456a1.125 1.125 0 0 1 1.37 0.49l1.296 2.247a1.125 1.125 0 0 1-0.26 1.431l-1.003 0.827c-0.293 0.24-0.438 0.613-0.431 0.992a6.759 6.759 0 0 1 0 0.255c-0.007 0.378 0.138 0.75 0.43 0.99l1.005 0.828c0.424 0.35 0.534 0.954 0.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369 0.491l-1.217-0.456c-0.355-0.133-0.75-0.072-1.076 0.124a6.57 6.57 0 0 1-0.22 0.128c-0.331 0.183-0.581 0.495-0.644 0.869l-0.213 1.28c-0.09 0.543-0.56 0.941-1.11 0.941h-2.594c-0.55 0-1.02-0.398-1.11-0.94l-0.213-1.281c-0.062-0.374-0.312-0.686-0.644-0.87a6.52 6.52 0 0 1-0.22-0.127c-0.325-0.196-0.72-0.257-1.076-0.124l-1.217 0.456a1.125 1.125 0 0 1-1.369-0.49l-1.297-2.247a1.125 1.125 0 0 1 0.26-1.431l1.004-0.827c0.292-0.24 0.437-0.613 0.43-0.992a6.932 6.932 0 0 1 0-0.255c0.007-0.378-0.138-0.75-0.43-0.99l-1.004-0.828a1.125 1.125 0 0 1-0.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-0.491l1.216 0.456c0.356 0.133 0.751 0.072 1.076-0.124 0.072-0.044 0.146-0.087 0.22-0.128 0.332-0.183 0.582-0.495 0.644-0.869l0.214-1.281z m5.406 8.06a3 3 0 1 1-6 0 3 3 0 0 1 6 0z",
+          "fillRule": "evenodd",
+          "viewBox": [
+            0,
+            0,
+            24,
+            24
+          ],
           "fill": "$color-text-secondary",
-          "width": 4,
-          "height": 4
-        },
-        {
-          "type": "rectangle",
-          "cornerRadius": 1,
-          "id": "hhhlC",
-          "x": 20,
-          "y": 10,
-          "name": "ToothRight",
-          "fill": "$color-text-secondary",
-          "width": 4,
-          "height": 4
+          "width": 24,
+          "height": 24
         }
       ]
     },

@@ -1,13 +1,21 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { createTimerStore, type TimerStore } from "../../stores/timerStore";
 
-// We'll recreate the store for each test with mocked engine
+/** 基准时间（2024-07-11T00:00:00Z），用于 tick 测试 */
+const BASE_TIME = 1720684800000;
+
 describe("timerStore", () => {
   let store: TimerStore;
 
   beforeEach(() => {
-    // Create fresh store for each test
-    store = createTimerStore();
+    // 使用受控时钟使 tick 测试可预测
+    vi.useFakeTimers();
+    vi.setSystemTime(BASE_TIME);
+    store = createTimerStore(undefined, () => Date.now());
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
   });
 
   // ==================== Initial State ====================

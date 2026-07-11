@@ -11,6 +11,7 @@
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import { TimerPage } from "./components/timer/TimerPage";
 import { SettingsPage } from "./components/settings/SettingsPage";
+import { TrayProvider } from "./hooks/useTray";
 
 /**
  * 路由配置组件（在 HashRouter 内部，可访问路由）。
@@ -44,7 +45,9 @@ function RouterRoutes() {
 function App() {
   return (
     <HashRouter>
-      <RouterRoutes />
+      <TrayProvider>
+        <RouterRoutes />
+      </TrayProvider>
     </HashRouter>
   );
 }

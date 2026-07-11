@@ -1,0 +1,73 @@
+{
+  "nodes": [
+    {
+      "id": "T-001",
+      "title": "项目脚手架搭建",
+      "priority": "P0",
+      "estimated_hours": 2,
+      "status": "pending"
+    },
+    {
+      "id": "T-002",
+      "title": "类型定义、工具函数与通用组件",
+      "priority": "P0",
+      "estimated_hours": 4,
+      "status": "pending"
+    },
+    {
+      "id": "T-003",
+      "title": "状态机与计时引擎",
+      "priority": "P0",
+      "estimated_hours": 5,
+      "status": "pending"
+    },
+    {
+      "id": "T-004",
+      "title": "状态管理层与通知模块",
+      "priority": "P0",
+      "estimated_hours": 5,
+      "status": "pending"
+    },
+    {
+      "id": "T-005",
+      "title": "自定义 Hooks",
+      "priority": "P0",
+      "estimated_hours": 3,
+      "status": "pending"
+    },
+    {
+      "id": "T-006",
+      "title": "计时器主页 UI",
+      "priority": "P0",
+      "estimated_hours": 4,
+      "status": "pending"
+    },
+    {
+      "id": "T-007",
+      "title": "设置页面与路由",
+      "priority": "P1",
+      "estimated_hours": 3,
+      "status": "pending"
+    },
+    {
+      "id": "T-008",
+      "title": "系统托盘集成",
+      "priority": "P2",
+      "estimated_hours": 2,
+      "status": "pending"
+    }
+  ],
+  "edges": [
+    { "from": "T-001", "to": "T-002" },
+    { "from": "T-002", "to": "T-003" },
+    { "from": "T-002", "to": "T-007" },
+    { "from": "T-003", "to": "T-004" },
+    { "from": "T-004", "to": "T-005" },
+    { "from": "T-004", "to": "T-007" },
+    { "from": "T-005", "to": "T-006" },
+    { "from": "T-005", "to": "T-008" }
+  ],
+  "parallel_groups": [
+    ["T-006", "T-007", "T-008"]
+  ]
+}

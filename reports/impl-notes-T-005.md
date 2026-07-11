@@ -4,12 +4,12 @@
 
 | 文件 | 操作 | 说明 |
 |------|------|------|
-| `src/hooks/useTimer.ts` | 新增 | tick 循环管理（250ms 间隔），自动 TIMER_COMPLETE + 通知触发 |
-| `src/hooks/useNotification.ts` | 新增 | 封装 notifyPhaseEnd，从 settingsStore 读取通知偏好 |
-| `src/hooks/useKeyboard.ts` | 新增 | 空格/R/S/Esc 快捷键映射到 timerStore action |
-| `src/__tests__/hooks/useTimer.test.tsx` | 新增 | 9 个测试用例 |
-| `src/__tests__/hooks/useNotification.test.tsx` | 新增 | 7 个测试用例 |
-| `src/__tests__/hooks/useKeyboard.test.tsx` | 新增 | 16 个测试用例 |
+| `src/hooks/useTimer.ts` | 新增 + 修复 | tick 循环管理（250ms 间隔），自动 TIMER_COMPLETE + 通知触发；修复缺失的 `TimerStore` 类型导入 |
+| `src/hooks/useNotification.ts` | 新增 + 修复 | 封装 notifyPhaseEnd，从 settingsStore 读取通知偏好；修复缺失的 `SettingsStore` 类型导入 |
+| `src/hooks/useKeyboard.ts` | 新增 + 修复 | 空格/R/S/Esc 快捷键映射到 timerStore action；修复缺失的 `TimerStore` 类型导入 |
+| `src/__tests__/hooks/useTimer.test.tsx` | 新增 | 11 个测试用例，覆盖 tick 循环、归零切换、清理、phase 变更 |
+| `src/__tests__/hooks/useNotification.test.tsx` | 新增 | 7 个测试用例，覆盖通知触发、soundEnabled 切换、无 settingsStore |
+| `src/__tests__/hooks/useKeyboard.test.tsx` | 新增 | 14 个测试用例，覆盖空格/R/S/Esc、修饰键、输入框过滤、清理 |
 
 ## 接口对照
 
@@ -37,7 +37,7 @@
 ## 自测结果
 
 - `npx vitest run src/__tests__/hooks/` — **32/32 通过**
-- `npx tsc --noEmit` — **无 hooks 相关类型错误**
+- `npx tsc --noEmit --skipLibCheck` — **hooks 相关文件 0 类型错误**
 - 空格键在 idle/running/paused 三种状态分别触发对应 action ✅
 - R 键在 idle/running 状态被忽略，仅 paused 触发 reset ✅
 - S 键在 idle 状态被忽略，running/paused 触发 skip ✅

@@ -85,3 +85,38 @@
 - `Design-Token.pen` — `font-sans` 变量改为 "Noto Sans SC"；文档说明更新
 - `PageUI-Design.pen` — 所有 emoji 替换为 SVG 图标引用，文字节点自动继承 `$font-ui`（Noto Sans SC）
 - `specs/ui-design.md` — 字体规范和图标规范更新
+
+## V1.0.2 更新 — 2026-07-11
+
+### 变更内容
+
+| 变更 | 说明 |
+|------|------|
+| 图标改用 Heroicons SVG | 所有自定义 SVG 图标替换为 Heroicons Outline 标准路径（通过 `better-icons` 技能获取） |
+| PageUI 字体 Noto Sans SC 修复 | PageUI-Design.pen 的 `font-ui` 变量更新为 "Noto Sans SC"（之前只更新了 Design-Token.pen） |
+| 应用 Logo | 使用 Agnes MCP 生成番茄钟 logo 图（SVG 版本回落 + 远程 AI 生成图） |
+
+### 图标明细
+
+| 图标 | Heroicons ID | 说明 |
+|------|-------------|------|
+| 齿轮 | `heroicons:cog-6-tooth` | 标题栏设置按钮 |
+| 左箭头 | `heroicons:arrow-left` | 设置页返回按钮 |
+| 时钟 | `heroicons:clock` | 计时时长分组标题 |
+| 铃铛 | `heroicons:bell` | 通知分组标题 |
+| 对勾 | `heroicons:check-circle` | Toast 成功 |
+| 警告 | `heroicons:exclamation-triangle` | Toast 错误 |
+| 减 | `heroicons:minus` | 步进器减少 |
+| 加 | `heroicons:plus` | 步进器增加 |
+
+### Logo 文件
+
+- `specs/mockups/logo.svg` — 手工 SVG 版（番茄 + 时钟指针，可直接用做应用图标）
+- `specs/mockups/logo.png` — Agnes AI 生成版（受网络限制未自动下载，远程可用）
+
+### 影响文件
+
+- `Design-Token.pen` — 无变化（已在 V1.0.1 更新）
+- `PageUI-Design.pen` — 所有图标替换为 Heroicons SVG 组件；`font-ui` 变量改为 "Noto Sans SC"
+- `specs/ui-design.md` — 图标规范更新为 Heroicons 对照表
+- `specs/mockups/logo.svg` — 新建，应用 logo

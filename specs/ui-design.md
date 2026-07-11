@@ -604,18 +604,22 @@ transition:
 
 ## 11. 图标规范
 
-| 图标 | 来源 | 尺寸 | 用途 | 无障碍 |
-|------|------|------|------|--------|
-| 设置 (齿轮) | 自定义 SVG（圆形外圈 + 十字交叉线） | 18×18px | 打开设置 | `aria-label="设置"` |
-| 返回 (左箭头) | 自定义 SVG（V形箭头 `M13 2 L4 8 L13 14`） | 16×16px | 返回计时器页 | `aria-label="返回"` |
-| 番茄图标 | 自定义 SVG（红色椭圆 + 绿色叶子） | 16×16px | 番茄计数 + 标题栏 | `aria-label="番茄钟"` |
-| 计时时长图标 | 自定义 SVG（圆形钟面 + 指针） | 16×16px | 设置页分组标题 | `aria-hidden="true"` |
-| 通知图标 | 自定义 SVG（钟形 + 底部弧线） | 16×16px | 设置页分组标题 | `aria-hidden="true"` |
-| 加载旋转 | 自定义 SVG 的 `circle` 旋转动画 | 16×16px | 按钮 loading | `aria-hidden="true"` |
-| 成功 | 自定义 SVG（对勾 `M3 8 L6 12 L13 4`） | 16×16px | Toast 成功 | `aria-hidden="true"` |
-| 错误 | 自定义 SVG（三角形感叹号） | 16×16px | Toast 错误 | `aria-hidden="true"` |
+所有 UI 图标使用 **Heroicons Outline** 风格（1.5px 描边），通过 `better-icons` 技能获取标准 Heroicons SVG。
 
-> **图标风格一致性**：全部使用 1.5-2px 描边长圆角自定义 SVG，确保视觉统一。所有 UI 图标已替换 emoji 为 SVG 组件。
+| 图标 | Heroicons ID | 尺寸 | 用途 | 无障碍 |
+|------|-------------|------|------|--------|
+| 设置 (齿轮) | `heroicons:cog-6-tooth` | 18×18px | 标题栏打开设置 | `aria-label="设置"` |
+| 返回 (左箭头) | `heroicons:arrow-left` | 16×16px | 设置页返回计时器 | `aria-label="返回"` |
+| 番茄图标 | 自定义 SVG（红椭圆 + 绿叶） | 16×16px | 标题栏番茄 + 番茄计数 | `aria-label="番茄钟"` |
+| 计时时长 | `heroicons:clock` | 16×16px | 设置页分组标题 | `aria-hidden="true"` |
+| 通知 | `heroicons:bell` | 16×16px | 设置页分组标题 | `aria-hidden="true"` |
+| 加载旋转 | 自定义 SVG circle 旋转动画 | 16×16px | 按钮 loading | `aria-hidden="true"` |
+| 成功 | `heroicons:check-circle` | 16×16px | Toast 成功（白色） | `aria-hidden="true"` |
+| 错误 | `heroicons:exclamation-triangle` | 16×16px | Toast 错误（白色） | `aria-hidden="true"` |
+| − 步进 | `heroicons:minus` | 16×16px | DurationInput 减少 | `aria-label="减少"` |
+| + 步进 | `heroicons:plus` | 16×16px | DurationInput 增加 | `aria-label="增加"` |
+
+> **图标风格一致性**：全部使用 Heroicons Outline 1.5px 描边风格，`currentColor` 着色，确保视觉统一。所有 UI 图标已替换 emoji 为 SVG 组件。
 
 ---
 

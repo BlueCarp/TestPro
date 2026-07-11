@@ -1,0 +1,343 @@
+# 🍅 Pomodoro Timer — Design Token (.pen)
+> 项目：番茄钟计时器客户端
+> 版本：1.0.0
+> 设计者：UID-UI设计师
+> 主题：暖色番茄红 + 中性灰，干净、专注、温暖
+
+---
+
+## 一、设计令牌（Design Tokens）
+
+### 1.1 色彩体系
+
+#### 品牌色（番茄红系）
+
+| Token | 色值 | 用途 |
+|-------|------|------|
+| `--color-tomato-900` | `#B71C1C` | active / 强调 |
+| `--color-tomato-800` | `#C62828` | 深色 hover |
+| `--color-tomato-700` | `#D32F2F` | 主色 hover |
+| `--color-tomato-600` | `#E53935` | 主色 Primary (默认) |
+| `--color-tomato-500` | `#EF5350` | 轻量强调 |
+| `--color-tomato-100` | `#FFCDD2` | 背景微染 |
+
+#### 阶段色
+
+| Token | 色值 | 阶段 |
+|-------|------|------|
+| `--color-phase-work` | `#E53935` | 工作 |
+| `--color-phase-short-break` | `#43A047` | 短休息 |
+| `--color-phase-long-break` | `#1E88E5` | 长休息 |
+
+#### 中性色
+
+| Token | 色值 | 用途 |
+|-------|------|------|
+| `--neutral-900` | `#212121` | 正文 / 标题 |
+| `--neutral-700` | `#616161` | 次要文字 |
+| `--neutral-500` | `#9E9E9E` | 占位符 / 禁用文字 |
+| `--neutral-300` | `#E0E0E0` | 边框 / 分割线 |
+| `--neutral-200` | `#EEEEEE` | 浅边框 / 悬停背景 |
+| `--neutral-100` | `#F5F5F5` | 表面背景 |
+| `--neutral-50` | `#FAFAFA` | 页面背景 |
+
+#### 功能色
+
+| Token | 色值 | 用途 |
+|-------|------|------|
+| `--color-success` | `#188038` | 成功状态 |
+| `--color-error` | `#D93025` | 错误状态 |
+| `--color-focus-ring` | `#1A73E8` | 焦点环 |
+| `--color-overlay` | `rgba(0,0,0,0.4)` | 遮罩层 |
+
+#### 暗黑模式
+
+| Token | 色值 | 用途 |
+|-------|------|------|
+| `--dark-surface-0` | `#1A1A2E` | 最深背景 |
+| `--dark-surface-1` | `#2D2D44` | 卡片表面 |
+| `--dark-surface-2` | `#3D3D56` | 次级表面 / hover |
+| `--dark-text-primary` | `#E8E8E8` | 正文 |
+| `--dark-text-secondary` | `#A0A0B0` | 次要文字 |
+| `--dark-border` | `#3D3D56` | 边框 |
+| `--dark-overlay` | `rgba(0,0,0,0.6)` | 遮罩 |
+
+### 1.2 字体体系
+
+| 属性 | 值 |
+|------|-----|
+| 正文字体 | `'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif` |
+| 等宽字体 | `'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace` |
+
+#### 字号缩放（Modular Scale: 1.25）
+
+| Token | 尺寸 | 用途 |
+|-------|------|------|
+| `--font-display` | `3.5rem` (56px) | 计时器主数字 |
+| `--font-h1` | `2rem` (32px) | — |
+| `--font-h2` | `1.5rem` (24px) | — |
+| `--font-h3` | `1.25rem` (20px) | — |
+| `--font-body` | `1rem` (16px) | 基准字号 |
+| `--font-body-small` | `0.875rem` (14px) | 次要文字 |
+| `--font-caption` | `0.75rem` (12px) | 辅助文字 |
+
+#### 字重
+
+| Token | 值 |
+|-------|-----|
+| `--weight-regular` | 400 |
+| `--weight-medium` | 500 |
+| `--weight-semibold` | 600 |
+| `--weight-bold` | 700 |
+
+### 1.3 间距体系（8px 网格）
+
+| Token | 值 | 说明 |
+|-------|-----|------|
+| `--space-xs` | 4px | 1/2 unit |
+| `--space-sm` | 8px | 1 unit |
+| `--space-md` | 16px | 2 units |
+| `--space-lg` | 24px | 3 units |
+| `--space-xl` | 32px | 4 units |
+| `--space-xxl` | 48px | 6 units |
+
+### 1.4 圆角
+
+| Token | 值 | 用途 |
+|-------|-----|------|
+| `--radius-none` | `0` | — |
+| `--radius-sm` | `4px` | 输入框 |
+| `--radius-md` | `8px` | 卡片 / 按钮 |
+| `--radius-lg` | `12px` | Modal / 大容器 |
+| `--radius-full` | `9999px` | 胶囊 / Toggle |
+
+### 1.5 阴影
+
+| Token | 值 |
+|-------|-----|
+| `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.08)` |
+| `--shadow-md` | `0 2px 8px rgba(0,0,0,0.10)` |
+| `--shadow-lg` | `0 8px 24px rgba(0,0,0,0.12)` |
+| `--shadow-focus` | `0 0 0 2px rgba(26,115,232,0.3)` |
+| `--shadow-glow-work` | `0 4px 20px rgba(229,57,53,0.15)` |
+| `--shadow-glow-short` | `0 4px 20px rgba(67,160,71,0.15)` |
+| `--shadow-glow-long` | `0 4px 20px rgba(30,136,229,0.15)` |
+
+### 1.6 过渡动效
+
+| Token | 值 | 用途 |
+|-------|-----|------|
+| `--transition-fast` | `150ms ease-in-out` | hover / active |
+| `--transition-normal` | `200ms ease-out` | 模态 / 弹窗 |
+| `--transition-slow` | `300ms ease-in-out` | 页面切换 |
+
+---
+
+## 二、组件设计规范
+
+### 2.1 TitleBar（标题栏）
+
+| 属性 | 规格 |
+|------|------|
+| 高度 | 48px |
+| 内边距 | `padding: 0 16px` |
+| 布局 | flexbox, justify-content: space-between |
+| 背景 | transparent |
+| 标题文字 | font-size: 1rem, font-weight: 600, color: #212121 |
+| 分割线 | border-bottom: 1px solid #E0E0E0 |
+
+**SettingsIcon（齿轮）5 状态：**
+
+| 状态 | 视觉 |
+|------|------|
+| default | color: #616161, cursor: pointer |
+| hover | color: #E53935, transform: rotate(45deg) |
+| active | color: #B71C1C |
+| focus-visible | outline: 2px solid #1A73E8, outline-offset: 2px |
+| disabled | 不适用 |
+
+**BackButton 5 状态：**
+
+| 状态 | 视觉 |
+|------|------|
+| default | color: #616161, cursor: pointer |
+| hover | color: #E53935 |
+| active | color: #B71C1C |
+| focus-visible | outline: 2px solid #1A73E8 |
+| disabled | 不适用 |
+
+### 2.2 PhaseLabel（阶段标签）
+
+| 属性 | 规格 |
+|------|------|
+| 布局 | 居中 flex，色点 + 文字间距 8px |
+| 色点 | 10×10px, border-radius: 50% |
+| 文字 | font-size: 0.875rem, font-weight: 600, letter-spacing: 0.02em |
+
+**阶段变体：**
+
+| 阶段 | 色点色值 | 文字色值 | 标签 |
+|------|---------|---------|------|
+| work | #E53935 | #E53935 | 工 作 |
+| short_break | #43A047 | #43A047 | 短休息 |
+| long_break | #1E88E5 | #1E88E5 | 长休息 |
+
+### 2.3 TimerDisplay（倒计时）
+
+| 属性 | 规格 |
+|------|------|
+| 字体 | 'JetBrains Mono', monospace (等宽) |
+| 字号 | 3.5rem (56px) |
+| 字重 | 700 (bold) |
+| 颜色 | #212121 |
+| 行高 | 1.2 |
+| tabular-nums | font-variant-numeric: tabular-nums |
+
+**阶段发光效果（运行中）：**
+
+| 阶段 | 阴影 |
+|------|------|
+| work | 0 4px 20px rgba(229,57,53,0.15) |
+| short_break | 0 4px 20px rgba(67,160,71,0.15) |
+| long_break | 0 4px 20px rgba(30,136,229,0.15) |
+
+### 2.4 PrimaryButton（主按钮）
+
+| 属性 | 规格 |
+|------|------|
+| 尺寸 | height: 48px, min-width: 200px |
+| 圆角 | border-radius: 24px（胶囊） |
+| 字体 | font-size: 1rem, font-weight: 600 |
+
+**5 状态：**
+
+| 状态 | 文本 | 背景 | 文字色 | 其他 |
+|------|------|------|--------|------|
+| default（开始） | "开始" | #E53935 | #FFFFFF | — |
+| default（暂停） | "暂停" | #E53935 | #FFFFFF | — |
+| default（继续） | "继续" | #E53935 | #FFFFFF | — |
+| hover | — | #D32F2F | #FFFFFF | box-shadow + |
+| active | — | #B71C1C | #FFFFFF | scale(0.97) |
+| focus-visible | — | #E53935 | #FFFFFF | ring-2 #1A73E8 |
+| disabled | — | #E0E0E0 | #9E9E9E | cursor: not-allowed |
+| loading | "开始" | #E53935 | #FFFFFF | spinner 16px |
+
+### 2.5 SkipButton & ResetButton（文字按钮）
+
+| 属性 | 规格 |
+|------|------|
+| 尺寸 | height: 32px, min-width: 60px |
+| 字体 | font-size: 0.875rem, font-weight: 500 |
+| 可见性 | Skip: running/paused; Reset: paused only |
+
+**状态（Skip）：**
+
+| 状态 | 色值 |
+|------|------|
+| default | color: #616161, bg: transparent |
+| hover | color: #E53935, bg: rgba(229,57,53,0.06) |
+| active | color: #B71C1C |
+| focus-visible | outline: 2px solid #1A73E8 |
+| disabled | color: #E0E0E0 |
+
+### 2.6 PomodoroCounter（番茄计数）
+
+| 属性 | 规格 |
+|------|------|
+| 布局 | 居中 flex, gap: 4px |
+| 图标 | 🍅 emoji, 1rem |
+| 文字 | font-size: 0.875rem, color: #616161, font-weight: 500 |
+| 格式 | 🍅 × N（N=0~4），始终显示 |
+
+### 2.7 DurationInput（时长调节）
+
+| 属性 | 规格 |
+|------|------|
+| 布局 | flex 行: label \| [−] value [+] \| 单位 |
+| 高度 | 40px |
+| 步进按钮 | 32×32px, border-radius: 50% |
+
+**输入框 5 状态：**
+
+| 状态 | 视觉 |
+|------|------|
+| default | border: 1px solid #E0E0E0, bg: #FFFFFF |
+| hover | border-color: #E53935 |
+| focus | border-color: #1A73E8, ring |
+| disabled | bg: #F5F5F5, color: #9E9E9E |
+| error | border-color: #D93025, ring red |
+
+### 2.8 ToggleSwitch（开关）
+
+| 属性 | 规格 |
+|------|------|
+| 尺寸 | 44×24px, border-radius: 12px |
+| 滑块 | 白色圆点, 16×16px |
+
+**5 状态：**
+
+| 状态 | ON | OFF |
+|------|----|-----|
+| default | bg: #E53935, 滑块右 | bg: #E0E0E0, 滑块左 |
+| hover | bg: #D32F2F | bg: #BDBDBD |
+| active | scale(0.95) | scale(0.95) |
+| focus-visible | ring-2 #1A73E8 | ring-2 #1A73E8 |
+| disabled | opacity: 0.5 | opacity: 0.5 |
+
+### 2.9 ConfirmModal（确认弹窗）
+
+| 属性 | 规格 |
+|------|------|
+| 遮罩 | rgba(0,0,0,0.4) |
+| 弹窗卡片 | bg: #FFFFFF, radius: 12px, w: 320px, padding: 24px |
+| 入场 | fade-in + scale(0.95→1), 200ms |
+| 主要按钮 | bg: #E53935, text: #FFFFFF, capsule |
+| 次要按钮 | border: 1px solid #E0E0E0, text: #616161 |
+
+### 2.10 Toast（提示条）
+
+| 属性 | 规格 |
+|------|------|
+| 定位 | fixed, top: 80px, center, z-index: 1000 |
+| 最大宽度 | 360px |
+| 圆角 | 8px |
+
+| 类型 | 背景 | 文字色 | 持续时间 |
+|------|------|--------|---------|
+| success | #E8F5E9 | #188038 | 2000ms |
+| error | #FFEBEE | #D93025 | 3000ms |
+
+---
+
+## 三、响应式断点
+
+| 断点 | 布局 |
+|------|------|
+| > 1024px | 固定窗口 400×600px，居中 |
+| 400–1024px | 标准桌面布局 |
+| 320–400px | TimerDisplay 缩至 2.5rem，内边距缩小 |
+| 最小窗口 | 320×480px |
+
+---
+
+## 四、可访问性基线
+
+- 颜色对比度 ≥ 4.5:1（正文）/ ≥ 3:1（大文本）
+- 所有交互元素可键盘操作（Tab + Enter/Space）
+- 焦点环：outline: 2px solid #1A73E8
+- 触摸目标 ≥ 44px（PrimaryButton 48px）
+- prefers-reduced-motion 适配
+- 表单 label 关联、aria-label、aria-live、role 属性
+- Modal 焦点陷阱
+
+---
+
+## 五、动画规范
+
+| 元素 | 动效 | 时长 | 缓动 |
+|------|------|------|------|
+| 按钮 hover | 背景色渐变 | 150ms | ease-in-out |
+| Modal 打开 | 淡入 + scale | 200ms | ease-out |
+| Toast 进入 | translateY + 淡入 | 200ms | ease-out |
+| Toggle 滑块 | translateX | 200ms | ease |
+| 页面切换 | 淡入 | 300ms | ease-in-out |

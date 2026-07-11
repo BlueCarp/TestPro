@@ -1,0 +1,188 @@
+# 🍅 PageUI-Design.pen — 番茄钟计时器页面设计
+> 版本：1.0.0
+> 设计者：UID-UI设计师
+> 基于：specs/wireframes.md, Design-Token.pen
+
+---
+
+## 页面总览
+
+| 页面 | 路由 | 状态数 | 设计稿 |
+|------|------|--------|--------|
+| 计时器主页 | / | 7 个 UI 状态 | specs/mockups/timer-*.html |
+| 设置页面 | /settings | 3 个状态 | specs/mockups/settings-*.html |
+| 确认弹窗 | 全局 | 1 个通用 | specs/mockups/modal-confirm.html |
+
+---
+
+## 一、计时器主页（/）
+
+### 状态概要
+
+wireframes 定义了 7 个 UI 状态：
+
+| # | 状态 ID | phase | status | 说明 |
+|---|---------|-------|--------|------|
+| 1 | idle | work | idle | 待开始，显示 25:00 |
+| 2 | running_work | work | running | 工作中，倒计时进行 |
+| 3 | paused_work | work | paused | 工作暂停，倒计时冻结 |
+| 4 | running_short_break | short_break | running | 短休息中，5:00 倒计时 |
+| 5 | paused_short_break | short_break | paused | 短休息暂停 |
+| 6 | running_long_break | long_break | running | 长休息中，15:00 倒计时 |
+| 7 | paused_long_break | long_break | paused | 长休息暂停 |
+
+### 页面布局
+
+```
+┌──────────────────────────────────┐
+│         TitleBar (48px)          │  ← 应用名 + 设置图标
+├──────────────────────────────────┤
+│                                  │  flex: 1, align-items: center
+│          PhaseLabel              │  ← 阶段色点 + 文字
+│                                  │
+│          TimerDisplay            │  ← 等宽字体 MM:SS
+│        (阶段色发光 glow)         │
+│                                  │
+│         PrimaryButton            │  ← 胶囊形，文本随状态变化
+│                                  │  ↑ running/paused 时 ↓
+│    [SkipButton] [ResetButton]    │  ← 可见性随状态变化
+│                                  │
+│         PomodoroCounter          │  ← 🍅 × N
+│                                  │
+└──────────────────────────────────┘
+```
+
+### 各状态 UI 对照
+
+| 状态 | PhaseLabel | TimerDisplay | PrimaryButton | 次要按钮 | 番茄计数 |
+|------|-----------|-------------|---------------|---------|---------|
+| idle | 🔴 工作 | 25:00 | 「开始」 | 无 | 🍅 × 0 |
+| running_work | 🔴 工作 | XX:XX | 「暂停」 | 跳过 | 🍅 × N |
+| paused_work | 🔴 工作 | XX:XX | 「继续」 | 重置, 跳过 | 🍅 × N |
+| running_short_break | 🟢 短休息 | XX:XX | 「暂停」 | 跳过 | 🍅 × N+1 |
+| paused_short_break | 🟢 短休息 | XX:XX | 「继续」 | 重置, 跳过 | 🍅 × N+1 |
+| running_long_break | 🔵 长休息 | XX:XX | 「暂停」 | 跳过 | 🍅 × 4 |
+| paused_long_break | 🔵 长休息 | XX:XX | 「继续」 | 重置, 跳过 | 🍅 × 4 |
+
+### 设计稿文件
+
+| 状态 | Mockup 文件 |
+|------|------------|
+| idle (待开始) | `specs/mockups/timer-idle.html` |
+| running_work (工作中) | `specs/mockups/timer-running.html` |
+| paused_work (工作暂停) | `specs/mockups/timer-paused.html` |
+| running_short_break (短休息中) | `specs/mockups/timer-short-break.html` |
+| running_long_break (长休息中) | `specs/mockups/timer-long-break.html` |
+
+---
+
+## 二、设置页面（/settings）
+
+### 状态概要
+
+| # | 状态 | 说明 |
+|---|------|------|
+| 1 | default | 默认显示，可编辑 |
+| 2 | validation_error | 校验失败，错误项高亮 |
+| 3 | saved | 保存成功，Toast 提示 |
+
+### 页面布局
+
+```
+┌──────────────────────────────────┐
+│   ← 返回          设 置          │  ← TitleBar (back + title)
+├──────────────────────────────────┤
+│  padding: 24px 16px, flex: 1     │
+│                                  │
+│  ⏱ 计时时长                      │  ← 分组标题
+│  ┌──────────────────────────┐    │
+│  │  工作时间    [−] 25 [+] 分钟│   │  ← DurationInput × 3
+│  │  短休息       [−] 5  [+] 分钟│   │
+│  │  长休息      [−] 15 [+] 分钟│   │
+│  └──────────────────────────┘    │
+│                                  │
+│  🔔 通知                         │  ← 分组标题
+│  ┌──────────────────────────┐    │
+│  │  声音通知            ON  │    │  ← ToggleSwitch × 2
+│  │  桌面通知            ON  │    │
+│  └──────────────────────────┘    │
+│                                  │
+│  [        保 存 设 置        ]   │  ← 全宽胶囊按钮
+│  [      恢 复 默 认 设 置      ] │  ← 次要按钮
+│                                  │
+└──────────────────────────────────┘
+```
+
+### 交互状态
+
+**default：** 正常工作状态，所有输入可编辑。
+
+**validation_error：** 当点击保存且值 < 1 或 > 120 时：
+- 错误字段边框变红 `border-color: #D93025`
+- 错误文字提示显示在字段下方（⚠ 短休息必须在 1-120 分钟之间）
+- 保存按钮不触发提交
+- Toast 弹出错误提示（3 秒后消失）
+
+**saved：**
+- 校验通过后，设置写入持久化存储
+- Toast 显示「✅ 设置已保存」（2 秒后自动消失）
+- 返回按钮可正常返回计时器主页
+
+### 设计稿文件
+
+| 状态 | Mockup 文件 |
+|------|------------|
+| default | `specs/mockups/settings-default.html` |
+| validation_error | `specs/mockups/settings-validation-error.html` |
+
+---
+
+## 三、通用组件
+
+### ConfirmModal（确认弹窗）
+
+| 属性 | 规格 |
+|------|------|
+| 遮罩 | rgba(0,0,0,0.4), 点击 = 取消 |
+| 弹窗 | 320px, bg: #FFFFFF, radius: 12px |
+| 提示文案 | 居中对齐, font-size: 1rem |
+| 主要按钮 | bg: #E53935, capsule |
+| 次要按钮 | border, text: #616161 |
+
+**两个使用场景：**
+
+1. 跳过当前阶段：「确定要跳过当前阶段吗？」→ [取消] / [确定]
+2. 放弃未保存修改：「有未保存的修改，确定离开吗？」→ [继续编辑] / [放弃]
+
+### Toast（提示条）
+
+| 类型 | 场景 |
+|------|------|
+| ✅ success | 保存成功 / 恢复默认成功 (2000ms) |
+| ⚠ error | 校验失败 (3000ms) |
+| ℹ info | 计时器异常通知 |
+
+---
+
+## 四、设计稿索引
+
+| 文件 | 对应状态 | 预览 |
+|------|---------|------|
+| `specs/mockups/timer-idle.html` | 待开始 idle | 25:00, 开始按钮 |
+| `specs/mockups/timer-running.html` | 工作中 running_work | 倒计时, 暂停按钮, 跳过 |
+| `specs/mockups/timer-paused.html` | 暂停 paused_work | 冻结时间, 继续/重置/跳过 |
+| `specs/mockups/timer-short-break.html` | 短休息 | 🟢 短休息, 5:00 |
+| `specs/mockups/timer-long-break.html` | 长休息 | 🔵 长休息, 15:00 |
+| `specs/mockups/settings-default.html` | 设置页默认 | 时长输入 + 开关 |
+| `specs/mockups/settings-validation-error.html` | 设置页校验错误 | 错误高亮 |
+| `specs/mockups/modal-confirm.html` | 确认弹窗 | 跳过确认 |
+
+---
+
+## 五、设计要点
+
+1. **品牌一致**：番茄红色贯穿主按钮、Toggle ON 态、阶段标识，保持视觉统一
+2. **阶段区分**：通过色点颜色（红/绿/蓝）+ 阶段文字 + 计时器下方发光色，三重编码确保阶段清晰可辨
+3. **状态可视化**：7 个计时器状态通过按钮文本 + 次要按钮可见性来区分，无需额外状态指示器
+4. **反馈及时**：操作后立即响应（按钮视觉反馈 + Toast 提示）
+5. **暗黑模式**：深蓝紫底 + 亮色品牌色，既护眼又保持品牌辨识度

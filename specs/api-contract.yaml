@@ -1,0 +1,688 @@
+openapi: "3.0.3"
+info:
+  title: "番茄钟计时器 — 数据模型与状态转换契约"
+  description: |
+    番茄钟计时器客户端 V1.0 的内部数据模型接口定义和计时器状态机规范。
+
+    **重要说明**：V1.0 为纯本地客户端应用，无后端 API。本文档定义的是：
+    1. 计时器状态机（State Machine）的完整状态转换规则
+    2. 关键数据模型的 TypeScript 接口定义
+    3. 设置持久化存储的 Schema
+    4. 组件间通信的 Props 契约
+
+    后端 API 部分（paths）标注为 N/A，仅供 V2 可能引入后端时参考框架。
+  version: "1.0.0"
+  contact:
+    name: "TD-技术设计师"
+
+# ============================================================
+# V1: 无后端 API — paths 为空
+# ============================================================
+paths: {}
+
+# ============================================================
+# 数据模型定义 (components/schemas)
+# ============================================================
+components:
+  schemas:
+    # ----------------------------------------------------------
+    # 计时器核心模型
+    # ----------------------------------------------------------
+
+    Phase:
+      description: |
+        计时器当前所处的阶段类型。
+        - work: 工作阶段（番茄钟），默认 25 分钟
+        - short_break: 短休息，默认 5 分钟
+        - long_break: 长休息，默认 15 分钟（每完成 4 个番茄钟后触发）
+      type: string
+      enum:
+        - work
+        - short_break
+        - long_break
+
+    Status:
+      description: |
+        计时器运行状态。
+        - idle: 待开始（仅 work 阶段可出现此状态）
+        - running: 倒计时运行中
+        - paused: 倒计时已暂停
+      type: string
+      enum:
+        - idle
+        - running
+        - paused
+
+    TimerState:
+      description: |
+        计时器完整运行时状态。此状态仅存在于内存中，应用重启后重置为 idle。
+
+        约束：
+        - status=idle 仅在 phase=work 时合法
+        - startedAt 和 pausedAt 互斥（至少一个为 null）
+        - completedPomodoros 范围 [0, 4]
+        - remainingSeconds 范围 [0, 7200]
+      type: object
+      required:
+        - phase
+        - status
+        - remainingSeconds
+        - completedPomodoros
+      properties:
+        phase:
+          $ref: "#/components/schemas/Phase"
+        status:
+          $ref: "#/components/schemas/Status"
+        remainingSeconds:
+          type: integer
+          minimum: 0
+          maximum: 7200
+          description: 当前阶段剩余秒数
+        completedPomodoros:
+          type: integer
+          minimum: 0
+          maximum: 4
+          description: 当前循环中已完成的工作番茄钟数量
+        startedAt:
+          type: integer
+          nullable: true
+          description: 本轮开始时间的 Unix 时间戳（毫秒），仅 running 状态时非 null
+        pausedAt:
+          type: integer
+          nullable: true
+          description: 暂停时间的 Unix 时间戳（毫秒），仅 paused 状态时非 null
+      example:
+        phase: "work"
+        status: "running"
+        remainingSeconds: 1417
+        completedPomodoros: 2
+        startedAt: 1720684800000
+        pausedAt: null
+
+    TimerAction:
+      description: |
+        计时器可接收的动作。由 UI 事件或计时引擎触发。
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - START
+            - PAUSE
+            - RESUME
+            - RESET
+            - SKIP
+            - TIMER_COMPLETE
+      example:
+        type: "START"
+
+    # ----------------------------------------------------------
+    # 设置模型
+    # ----------------------------------------------------------
+
+    DurationConfig:
+      description: |
+        用户可配置的三阶段时长。所有值以分钟为单位。
+        校验规则：每个字段值在 [1, 120] 之间。
+      type: object
+      required:
+        - workMinutes
+        - shortBreakMinutes
+        - longBreakMinutes
+      properties:
+        workMinutes:
+          type: integer
+          minimum: 1
+          maximum: 120
+          default: 25
+          description: 工作阶段时长（分钟）
+        shortBreakMinutes:
+          type: integer
+          minimum: 1
+          maximum: 120
+          default: 5
+          description: 短休息时长（分钟）
+        longBreakMinutes:
+          type: integer
+          minimum: 1
+          maximum: 120
+          default: 15
+          description: 长休息时长（分钟）
+      example:
+        workMinutes: 25
+        shortBreakMinutes: 5
+        longBreakMinutes: 15
+
+    NotificationConfig:
+      description: 通知偏好设置
+      type: object
+      required:
+        - soundEnabled
+        - desktopNotificationEnabled
+      properties:
+        soundEnabled:
+          type: boolean
+          default: true
+          description: 是否在阶段切换时播放提示音
+        desktopNotificationEnabled:
+          type: boolean
+          default: true
+          description: 是否在阶段切换时弹出桌面通知
+      example:
+        soundEnabled: true
+        desktopNotificationEnabled: true
+
+    Settings:
+      description: |
+        用户设置完整模型（时长 + 通知偏好）。通过 @tauri-apps/plugin-store 持久化到本地 JSON 文件。
+
+        持久化路径（Tauri Store 自动解析）：
+        - Windows: %APPDATA%/com.pomodoro.app/settings.json
+        - macOS: ~/Library/Application Support/com.pomodoro.app/settings.json
+        - Linux: ~/.local/share/com.pomodoro.app/settings.json
+
+        读取失败时回退到默认值（所有字段的 default 值）。
+      allOf:
+        - $ref: "#/components/schemas/DurationConfig"
+        - $ref: "#/components/schemas/NotificationConfig"
+      example:
+        workMinutes: 25
+        shortBreakMinutes: 5
+        longBreakMinutes: 15
+        soundEnabled: true
+        desktopNotificationEnabled: true
+
+    SettingsValidationError:
+      description: 设置校验失败时返回的错误信息
+      type: object
+      required:
+        - field
+        - message
+      properties:
+        field:
+          type: string
+          enum:
+            - workMinutes
+            - shortBreakMinutes
+            - longBreakMinutes
+          description: 校验失败的字段名
+        message:
+          type: string
+          description: 错误提示文案
+      example:
+        field: "shortBreakMinutes"
+        message: "请输入有效的时长（1–120 分钟）"
+
+    # ----------------------------------------------------------
+    # 通知模型
+    # ----------------------------------------------------------
+
+    PhaseEndNotification:
+      description: 阶段结束时触发的通知内容
+      type: object
+      required:
+        - phase
+        - title
+        - body
+      properties:
+        phase:
+          $ref: "#/components/schemas/Phase"
+        title:
+          type: string
+          description: 通知标题
+        body:
+          type: string
+          description: 通知正文
+      example:
+        phase: "work"
+        title: "工作时间结束"
+        body: "休息一下吧！"
+
+    # ----------------------------------------------------------
+    # 组件 Props 契约
+    # ----------------------------------------------------------
+
+    TimerDisplayProps:
+      description: TimerDisplay 组件的 Props
+      type: object
+      required:
+        - remainingSeconds
+      properties:
+        remainingSeconds:
+          type: integer
+          minimum: 0
+          maximum: 7200
+          description: 显示为 MM:SS 格式的剩余秒数
+
+    PhaseLabelProps:
+      description: PhaseLabel 组件的 Props
+      type: object
+      required:
+        - phase
+      properties:
+        phase:
+          $ref: "#/components/schemas/Phase"
+
+    PrimaryButtonProps:
+      description: PrimaryButton 组件的 Props，按钮文本由 status 决定
+      type: object
+      required:
+        - status
+        - onClick
+      properties:
+        status:
+          $ref: "#/components/schemas/Status"
+        onClick:
+          description: 点击回调函数（不序列化）
+          type: string
+          format: function
+
+    PomodoroCounterProps:
+      description: PomodoroCounter 组件的 Props
+      type: object
+      required:
+        - count
+      properties:
+        count:
+          type: integer
+          minimum: 0
+          maximum: 4
+          description: 已完成番茄钟数量
+
+    DurationInputProps:
+      description: DurationInput 组件的 Props
+      type: object
+      required:
+        - label
+        - value
+        - min
+        - max
+        - onChange
+      properties:
+        label:
+          type: string
+          description: 输入框标签（如 "工作时间"）
+        value:
+          type: integer
+          minimum: 1
+          maximum: 120
+        min:
+          type: integer
+          default: 1
+        max:
+          type: integer
+          default: 120
+        onChange:
+          description: 值变更回调
+          type: string
+          format: function
+
+    ToggleSwitchProps:
+      description: ToggleSwitch 组件的 Props
+      type: object
+      required:
+        - label
+        - enabled
+        - onToggle
+      properties:
+        label:
+          type: string
+          description: 开关标签（如 "声音通知"）
+        enabled:
+          type: boolean
+        onToggle:
+          description: 切换回调
+          type: string
+          format: function
+
+    ConfirmModalProps:
+      description: 通用确认弹窗 Props
+      type: object
+      required:
+        - message
+        - primaryLabel
+        - secondaryLabel
+        - onPrimary
+        - onSecondary
+        - onDismiss
+      properties:
+        message:
+          type: string
+          description: 提示文案
+        primaryLabel:
+          type: string
+          description: 主操作按钮文本（如 "确定"）
+        secondaryLabel:
+          type: string
+          description: 次操作按钮文本（如 "取消"）
+        onPrimary:
+          type: string
+          format: function
+        onSecondary:
+          type: string
+          format: function
+        onDismiss:
+          type: string
+          format: function
+
+    ToastProps:
+      description: Toast 提示 Props
+      type: object
+      required:
+        - message
+        - type
+      properties:
+        message:
+          type: string
+          description: 提示文案
+        type:
+          type: string
+          enum:
+            - success
+            - error
+        duration:
+          type: integer
+          default: 2000
+          description: 自动消失时间（毫秒），0 表示不自动消失
+
+# ============================================================
+# 状态机定义 (x-state-machine extension)
+# ============================================================
+x-state-machine:
+  name: "PomodoroTimerStateMachine"
+  description: |
+    番茄钟计时器核心状态机。状态由 (Phase, Status) 二元组决定。
+
+    有效状态组合（7 个 UI 状态）：
+    - idle: (work, idle)
+    - running_work: (work, running)
+    - paused_work: (work, paused)
+    - running_short_break: (short_break, running)
+    - paused_short_break: (short_break, paused)
+    - running_long_break: (long_break, running)
+    - paused_long_break: (long_break, paused)
+
+    无效状态组合：
+    - (short_break, idle) — 休息阶段无 idle 状态，由上一阶段自动进入
+    - (long_break, idle) — 同上
+
+  # 显式状态枚举
+  states:
+    - id: "idle"
+      label: "待开始"
+      description: "应用启动默认状态或长休息结束后状态。仅工作阶段有此状态。"
+
+    - id: "running_work"
+      label: "工作中"
+      description: "工作计时器倒计时运行中。"
+
+    - id: "paused_work"
+      label: "工作暂停"
+      description: "工作计时器已暂停，倒计时冻结。"
+
+    - id: "running_short_break"
+      label: "短休息中"
+      description: "短休息计时器倒计时运行中。"
+
+    - id: "paused_short_break"
+      label: "短休息暂停"
+      description: "短休息计时器已暂停。"
+
+    - id: "running_long_break"
+      label: "长休息中"
+      description: "长休息计时器倒计时运行中（每 4 个番茄钟后触发）。"
+
+    - id: "paused_long_break"
+      label: "长休息暂停"
+      description: "长休息计时器已暂停。"
+
+  initial: "idle"
+
+  transitions:
+    # ==========================================================
+    # 从 idle 出发
+    # ==========================================================
+    - from: "idle"
+      to: "running_work"
+      trigger: "START"
+      guard: "phase == work"
+      effect: |
+        - 设置 startedAt = Date.now()
+        - 启动 tick 循环 (每 250ms)
+      description: "用户点击「开始」按钮或按空格键"
+
+    # ==========================================================
+    # 从 running_work 出发
+    # ==========================================================
+    - from: "running_work"
+      to: "paused_work"
+      trigger: "PAUSE"
+      effect: |
+        - 设置 pausedAt = Date.now()
+        - remainingSeconds 冻结 = totalDuration - (pausedAt - startedAt) / 1000
+        - 停止 tick 循环
+      description: "用户点击「暂停」按钮或按空格键"
+
+    - from: "running_work"
+      to: "running_short_break"
+      trigger: "TIMER_COMPLETE"
+      guard: "completedPomodoros < 3"
+      effect: |
+        - completedPomodoros += 1
+        - remainingSeconds = shortBreakMinutes * 60
+        - 触发通知「工作时间结束，休息一下吧！」
+        - 若 soundEnabled → 播放提示音
+        - 若 desktopNotificationEnabled → 弹出桌面通知
+      description: "工作计时归零，且当前循环番茄钟数 < 4，进入短休息"
+
+    - from: "running_work"
+      to: "running_long_break"
+      trigger: "TIMER_COMPLETE"
+      guard: "completedPomodoros == 3"
+      effect: |
+        - completedPomodoros = 4
+        - remainingSeconds = longBreakMinutes * 60
+        - 触发通知「工作时间结束，休息一下吧！」
+      description: "工作计时归零，且已完成 3 个番茄钟（当前为第 4 个），进入长休息"
+
+    - from: "running_work"
+      to: "running_short_break"
+      trigger: "SKIP"
+      guard: "completedPomodoros < 3"
+      effect: |
+        - 弹出确认弹窗「确定要跳过当前阶段吗？」
+        - 用户确认后：completedPomodoros += 1
+        - remainingSeconds = shortBreakMinutes * 60
+      description: "用户确认跳过当前工作阶段，且番茄钟数 < 4 → 短休息"
+
+    - from: "running_work"
+      to: "running_long_break"
+      trigger: "SKIP"
+      guard: "completedPomodoros == 3"
+      effect: |
+        - 确认后：completedPomodoros = 4
+        - remainingSeconds = longBreakMinutes * 60
+      description: "用户确认跳过当前工作阶段，且番茄钟数 = 4 → 长休息"
+
+    # ==========================================================
+    # 从 paused_work 出发
+    # ==========================================================
+    - from: "paused_work"
+      to: "running_work"
+      trigger: "RESUME"
+      effect: |
+        - 调整 startedAt = Date.now() - (pausedAt - startedAt)
+        - pausedAt = null
+        - 重启 tick 循环
+      description: "用户点击「继续」按钮"
+
+    - from: "paused_work"
+      to: "idle"
+      trigger: "RESET"
+      effect: |
+        - remainingSeconds = workMinutes * 60
+        - startedAt = null
+        - pausedAt = null
+        - completedPomodoros 不变
+      description: "用户点击「重置」按钮，回到当前阶段初始时长"
+
+    - from: "paused_work"
+      to: "running_short_break"
+      trigger: "SKIP"
+      guard: "completedPomodoros < 3"
+      effect: |
+        - 确认后：completedPomodoros += 1
+        - remainingSeconds = shortBreakMinutes * 60
+      description: "暂停状态下跳过工作 → 短休息"
+
+    - from: "paused_work"
+      to: "running_long_break"
+      trigger: "SKIP"
+      guard: "completedPomodoros == 3"
+      effect: |
+        - 确认后：completedPomodoros = 4
+        - remainingSeconds = longBreakMinutes * 60
+      description: "暂停状态下跳过工作 → 长休息"
+
+    # ==========================================================
+    # 从 running_short_break 出发
+    # ==========================================================
+    - from: "running_short_break"
+      to: "paused_short_break"
+      trigger: "PAUSE"
+      effect: "同 PAUSE 通用逻辑"
+      description: "用户点击「暂停」"
+
+    - from: "running_short_break"
+      to: "running_work"
+      trigger: "TIMER_COMPLETE"
+      effect: |
+        - remainingSeconds = workMinutes * 60
+        - completedPomodoros 不变
+        - 触发通知「休息结束，开始工作吧！」
+      description: "短休息计时归零，自动进入下一个工作阶段"
+
+    - from: "running_short_break"
+      to: "running_work"
+      trigger: "SKIP"
+      effect: |
+        - 确认后：remainingSeconds = workMinutes * 60
+        - completedPomodoros 不变
+      description: "用户确认跳过短休息"
+
+    # ==========================================================
+    # 从 paused_short_break 出发
+    # ==========================================================
+    - from: "paused_short_break"
+      to: "running_short_break"
+      trigger: "RESUME"
+      effect: "同 RESUME 通用逻辑"
+      description: "用户点击「继续」"
+
+    - from: "paused_short_break"
+      to: "idle"
+      trigger: "RESET"
+      effect: |
+        - remainingSeconds = workMinutes * 60
+        - phase = work
+        - status = idle
+        - completedPomodoros 不变
+      description: "用户点击「重置」，回到工作 idle 状态"
+
+    - from: "paused_short_break"
+      to: "running_work"
+      trigger: "SKIP"
+      effect: "同 running_short_break + SKIP"
+      description: "暂停状态下跳过短休息 → 工作"
+
+    # ==========================================================
+    # 从 running_long_break 出发
+    # ==========================================================
+    - from: "running_long_break"
+      to: "paused_long_break"
+      trigger: "PAUSE"
+      effect: "同 PAUSE 通用逻辑"
+      description: "用户点击「暂停」"
+
+    - from: "running_long_break"
+      to: "idle"
+      trigger: "TIMER_COMPLETE"
+      effect: |
+        - remainingSeconds = workMinutes * 60
+        - completedPomodoros = 0 （循环重置）
+        - phase = work
+        - status = idle
+        - 触发通知「休息结束，开始新的循环吧！」
+      description: "长休息计时归零，循环结束，回到 idle 等待新循环"
+
+    - from: "running_long_break"
+      to: "idle"
+      trigger: "SKIP"
+      effect: |
+        - 确认后：remainingSeconds = workMinutes * 60
+        - completedPomodoros = 0 （循环重置）
+        - phase = work
+        - status = idle
+      description: "用户确认跳过长休息，循环结束"
+
+    # ==========================================================
+    # 从 paused_long_break 出发
+    # ==========================================================
+    - from: "paused_long_break"
+      to: "running_long_break"
+      trigger: "RESUME"
+      effect: "同 RESUME 通用逻辑"
+      description: "用户点击「继续」"
+
+    - from: "paused_long_break"
+      to: "idle"
+      trigger: "RESET"
+      effect: |
+        - remainingSeconds = workMinutes * 60
+        - completedPomodoros = 0 （循环重置）
+        - phase = work
+        - status = idle
+      description: "用户点击「重置」，回到工作 idle"
+
+    - from: "paused_long_break"
+      to: "idle"
+      trigger: "SKIP"
+      effect: "同 running_long_break + SKIP"
+      description: "暂停状态下跳过长休息 → 循环结束"
+
+  # ----------------------------------------------------------
+  # 非法转换（被拒绝）
+  # ----------------------------------------------------------
+  forbidden_transitions:
+    - from: "idle"
+      trigger: "PAUSE"
+      reason: "idle 状态下计时器未启动，无法暂停"
+    - from: "idle"
+      trigger: "RESUME"
+      reason: "idle 状态下计时器未启动，无法继续"
+    - from: "idle"
+      trigger: "RESET"
+      reason: "idle 状态已在初始时长，无需重置"
+    - from: "idle"
+      trigger: "SKIP"
+      reason: "idle 状态下无进行中的阶段可跳过"
+    - from: "running_work"
+      trigger: "RESUME"
+      reason: "running 状态下已是运行中，无法继续"
+    - from: "running_work"
+      trigger: "START"
+      reason: "running 状态下已启动，无法再次启动"
+    - from: "paused_work"
+      trigger: "START"
+      reason: "paused 状态下已启动，无法再次启动"
+    - from: "paused_work"
+      trigger: "PAUSE"
+      reason: "paused 状态下已是暂停中，无法再次暂停"
+    - from: "running_short_break"
+      trigger: "START"
+      reason: "休息阶段自动进入，无手动 START 操作"
+    - from: "running_long_break"
+      trigger: "START"
+      reason: "休息阶段自动进入，无手动 START 操作"

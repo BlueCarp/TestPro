@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番茄钟 — 短休息中</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #43A047; --primary-hover: #388E3C; --primary-active: #2E7D32;
+    --phase: #43A047; --text-primary: #212121; --text-secondary: #616161;
+    --text-disabled: #9E9E9E; --border: #E0E0E0; --bg-surface: #FFFFFF;
+    --focus-ring: #1A73E8;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+  body {
+    font-family: var(--font-sans); background: #EDEDF0;
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; color: var(--text-primary);
+  }
+  .window {
+    width: 400px; height: 600px; background: var(--bg-surface);
+    border-radius: 16px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column; overflow: hidden;
+  }
+  .titlebar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 16px; height: 48px; border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .titlebar-title { font-size: 1rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .titlebar-title .icon { font-size: 1.1rem; }
+  .titlebar-settings {
+    width: 36px; height: 36px; display: flex; align-items: center;
+    justify-content: center; border-radius: 8px; cursor: pointer;
+    color: var(--text-secondary); border: none; background: none;
+    transition: all 150ms ease-in-out;
+  }
+  .titlebar-settings:hover { color: var(--primary); background: rgba(67,160,71,0.06); transform: rotate(45deg); }
+  .titlebar-settings:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .timer-content {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 24px 16px 20px;
+  }
+  .phase-label { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .phase-dot { width: 10px; height: 10px; border-radius: 50%; background: #43A047; }
+  .phase-text { font-size: 0.875rem; font-weight: 600; letter-spacing: 0.06em; color: #43A047; text-transform: uppercase; }
+  .timer-display-wrapper { position: relative; padding: 20px 16px; margin: 8px 0; }
+  .timer-display {
+    font-family: var(--font-mono); font-size: 3.5rem; font-weight: 700;
+    color: var(--text-primary); line-height: 1.2; letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums; text-align: center; user-select: none;
+  }
+  .timer-glow { position: absolute; top: -12px; left: -16px; right: -16px; bottom: -12px; border-radius: 24px; pointer-events: none; }
+  .timer-glow.active { box-shadow: 0 4px 20px rgba(67,160,71,0.15); }
+  @keyframes pulse-green { 0%,100% { box-shadow: 0 4px 20px rgba(67,160,71,0.12); } 50% { box-shadow: 0 6px 28px rgba(67,160,71,0.22); } }
+  .pulse { animation: pulse-green 3s ease-in-out infinite; }
+  .primary-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 48px; min-width: 200px; padding: 0 40px; border-radius: 24px;
+    border: none; background: var(--primary); color: #FFFFFF;
+    font-family: var(--font-sans); font-size: 1rem; font-weight: 600;
+    cursor: pointer; transition: all 150ms ease-in-out; margin: 12px 0;
+  }
+  .primary-btn:hover { background: var(--primary-hover); box-shadow: 0 2px 12px rgba(56,142,60,0.30); }
+  .primary-btn:active { background: var(--primary-active); transform: scale(0.97); }
+  .primary-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 3px; }
+  .secondary-row { display: flex; gap: 16px; justify-content: center; align-items: center; min-height: 32px; margin: 4px 0; }
+  .secondary-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 32px; padding: 0 12px; border: none; border-radius: 6px;
+    background: transparent; color: var(--text-secondary);
+    font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; transition: all 150ms ease-in-out;
+  }
+  .secondary-btn:hover { color: var(--primary); background: rgba(67,160,71,0.06); }
+  .secondary-btn:active { color: var(--primary-active); background: rgba(67,160,71,0.10); }
+  .secondary-btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+  .pomodoro-counter { display: flex; align-items: center; gap: 6px; margin-top: auto; padding-bottom: 8px; font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; }
+  .pomodoro-counter .tomato { font-size: 1rem; }
+  .mockup-label { text-align: center; padding: 6px 0 0; font-size: 0.675rem; color: var(--text-disabled); letter-spacing: 0.05em; font-weight: 500; user-select: none; }
+  .mockup-label span { background: #F0F0F0; padding: 2px 10px; border-radius: 10px; }
+</style>
+</head>
+<body>
+<div class="window">
+  <div class="titlebar">
+    <div class="titlebar-title"><span class="icon">🍅</span>Pomodoro</div>
+    <button class="titlebar-settings" aria-label="设置">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+  </div>
+  <div class="timer-content">
+    <div class="phase-label">
+      <span class="phase-dot"></span>
+      <span class="phase-text">短 休 息</span>
+    </div>
+    <div class="timer-display-wrapper">
+      <div class="timer-glow active pulse"></div>
+      <div class="timer-display">4:15</div>
+    </div>
+    <button class="primary-btn">暂 停</button>
+    <div class="secondary-row">
+      <button class="secondary-btn">跳 过</button>
+    </div>
+    <div class="pomodoro-counter">
+      <span class="tomato">🍅</span><span>× 1</span>
+    </div>
+  </div>
+  <div class="mockup-label"><span>running_short_break — 短休息中</span></div>
+</div>
+</body>
+</html>

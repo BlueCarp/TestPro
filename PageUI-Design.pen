@@ -45,12 +45,12 @@
               "alignItems": "center",
               "children": [
                 {
-                  "id": "E5yVqG",
+                  "id": "ftssH",
                   "type": "ref",
-                  "ref": "U34aFo",
-                  "name": "TomatoIcon",
-                  "width": 16,
-                  "height": 16
+                  "ref": "JqTzC",
+                  "name": "AppLogo",
+                  "width": 20,
+                  "height": 20
                 },
                 {
                   "type": "text",
@@ -272,12 +272,12 @@
               "alignItems": "center",
               "children": [
                 {
-                  "id": "vkquH",
+                  "id": "SR69i",
                   "type": "ref",
-                  "ref": "U34aFo",
-                  "name": "TomatoIcon",
-                  "width": 16,
-                  "height": 16
+                  "ref": "JqTzC",
+                  "name": "AppLogo",
+                  "width": 20,
+                  "height": 20
                 },
                 {
                   "type": "text",
@@ -518,12 +518,12 @@
               "alignItems": "center",
               "children": [
                 {
-                  "id": "lat7B",
+                  "id": "qI96T",
                   "type": "ref",
-                  "ref": "U34aFo",
-                  "name": "TomatoIcon",
-                  "width": 16,
-                  "height": 16
+                  "ref": "JqTzC",
+                  "name": "AppLogo",
+                  "width": 20,
+                  "height": 20
                 },
                 {
                   "type": "text",
@@ -774,12 +774,12 @@
               "alignItems": "center",
               "children": [
                 {
-                  "id": "xCbtZ",
+                  "id": "U3wxu",
                   "type": "ref",
-                  "ref": "U34aFo",
-                  "name": "TomatoIcon",
-                  "width": 16,
-                  "height": 16
+                  "ref": "JqTzC",
+                  "name": "AppLogo",
+                  "width": 20,
+                  "height": 20
                 },
                 {
                   "type": "text",
@@ -1020,12 +1020,12 @@
               "alignItems": "center",
               "children": [
                 {
-                  "id": "Rhoml",
+                  "id": "VfScN",
                   "type": "ref",
-                  "ref": "U34aFo",
-                  "name": "TomatoIcon",
-                  "width": 16,
-                  "height": 16
+                  "ref": "JqTzC",
+                  "name": "AppLogo",
+                  "width": 20,
+                  "height": 20
                 },
                 {
                   "type": "text",
@@ -2325,6 +2325,70 @@
           "fill": "#43A047",
           "width": 6,
           "height": 5
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "JqTzC",
+      "x": 0,
+      "y": -252,
+      "name": "AppLogo",
+      "reusable": true,
+      "width": 32,
+      "height": 32,
+      "fill": {
+        "type": "image",
+        "enabled": true,
+        "url": "specs/mockups/logo.png",
+        "mode": "fit"
+      },
+      "cornerRadius": 4
+    },
+    {
+      "type": "frame",
+      "id": "dQU7G",
+      "x": 0,
+      "y": -512,
+      "name": "App Icon Mockup",
+      "width": 200,
+      "height": 220,
+      "layout": "vertical",
+      "gap": 16,
+      "justifyContent": "center",
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "D01YD",
+          "name": "IconBackground",
+          "width": 128,
+          "height": 128,
+          "fill": "#E53935",
+          "cornerRadius": 28,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "vw8j6",
+              "type": "ref",
+              "ref": "JqTzC",
+              "name": "AppLogoImage",
+              "width": 96,
+              "height": 96
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "CQzAE",
+          "name": "IconLabel",
+          "fill": "$color-text-primary",
+          "content": "App Icon",
+          "textAlign": "center",
+          "fontFamily": "$font-ui",
+          "fontSize": 14,
+          "fontWeight": "600"
         }
       ]
     }

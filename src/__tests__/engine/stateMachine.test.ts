@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { transition } from "../../engine/stateMachine";
+import { transition, getNextPhase } from "../../engine/stateMachine";
 import type { TimerState, TimerAction } from "../../types/timer";
 import type { DurationConfig } from "../../types/settings";
 
@@ -376,6 +376,25 @@ describe("stateMachine - transition", () => {
   });
 
   // ================================================================
+  // Additional Edge Cases for Error Throws
+  // ================================================================
+  describe("edge case throws", () => {
+    it("should throw when TIMER_COMPLETE is called from idle", () => {
+      expect(() => transition(idleState(), { type: "TIMER_COMPLETE" }, defaultSettings)).toThrow();
+    });
+
+    it("should throw when TIMER_COMPLETE is called from paused state", () => {
+      const state = pausedWorkState();
+      expect(() => transition(state, { type: "TIMER_COMPLETE" }, defaultSettings)).toThrow();
+    });
+
+    it("should throw when RESET is called from running state", () => {
+      const state = runningWorkState();
+      expect(() => transition(state, { type: "RESET" }, defaultSettings)).toThrow();
+    });
+  });
+
+  // ================================================================
   // Pomodoro Counting Lifecycle
   // ================================================================
   describe("pomodoro counting lifecycle", () => {
@@ -511,5 +530,50 @@ describe("stateMachine - transition", () => {
       const result = transition(state, { type: "RESUME" }, defaultSettings);
       expect(result.remainingSeconds).toBe(777);
     });
+  });
+});
+
+// ================================================================
+// getNextPhase
+// ================================================================
+describe("getNextPhase", () => {
+  it("should return short_break when completedPomodoros < 3 and phase is work", () => {
+    const state = runningWorkState(1, 0);
+    const result = getNextPhase(state, defaultSettings);
+    expect(result.phase).toBe("short_break");
+    expect(result.initialSeconds).toBe(300);
+  });
+
+  it("should return long_break when completedPomodoros === 3 and phase is work", () => {
+    const state = runningWorkState(3, 0);
+    const result = getNextPhase(state, defaultSettings);
+    expect(result.phase).toBe("long_break");
+    expect(result.initialSeconds).toBe(900);
+  });
+
+  it("should return work when phase is short_break", () => {
+    const state = runningShortBreakState(2, 100);
+    const result = getNextPhase(state, defaultSettings);
+    expect(result.phase).toBe("work");
+    expect(result.initialSeconds).toBe(1500);
+  });
+
+  it("should return work when phase is long_break", () => {
+    const state = runningLongBreakState(500);
+    const result = getNextPhase(state, defaultSettings);
+    expect(result.phase).toBe("work");
+    expect(result.initialSeconds).toBe(1500);
+  });
+
+  it("should use custom durations from settings", () => {
+    const customSettings: DurationConfig = {
+      workMinutes: 45,
+      shortBreakMinutes: 10,
+      longBreakMinutes: 20,
+    };
+    const state = runningWorkState(0, 0);
+    const result = getNextPhase(state, customSettings);
+    expect(result.phase).toBe("short_break");
+    expect(result.initialSeconds).toBe(600); // 10 * 60
   });
 });

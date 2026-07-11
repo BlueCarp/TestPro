@@ -1,0 +1,23 @@
+{
+  "project_id": "30ee31fb-1b99-4200-9549-5207e086c20b",
+  "project_title": "研发流TEST",
+  "project_description": "测试项目",
+  "resources": [
+    {
+      "id": "05c96236-33e4-4bf8-8e7f-9ef91dbe032e",
+      "resource_type": "github_repo",
+      "resource_ref": {
+        "url": "git@github.com:BlueCarp/TestPro.git"
+      }
+    },
+    {
+      "id": "2c66072d-2103-4e71-bbf8-e349a6851597",
+      "resource_type": "local_directory",
+      "resource_ref": {
+        "label": "TestPro",
+        "daemon_id": "019f40d1-1a6a-7e60-ac65-c45e805d09ef",
+        "local_path": "D:\\AIcoding\\TestPro"
+      }
+    }
+  ]
+}

@@ -162,6 +162,41 @@ describe("settingsStore", () => {
     });
   });
 
+  // ==================== Direct Set Methods (P2-2: CR 建议补充) ====================
+  describe("direct set methods", () => {
+    it("should set soundEnabled to false directly", () => {
+      expect(store.getState().soundEnabled).toBe(true);
+      store.getState().setSoundEnabled(false);
+      expect(store.getState().soundEnabled).toBe(false);
+      expect(store.getState().isDirty).toBe(true);
+    });
+
+    it("should set soundEnabled to true directly", () => {
+      store.getState().setSoundEnabled(false);
+      store.getState().setSoundEnabled(true);
+      expect(store.getState().soundEnabled).toBe(true);
+      expect(store.getState().isDirty).toBe(true);
+    });
+
+    it("should not mark dirty when value unchanged", () => {
+      // soundEnabled starts as true
+      store.getState().setSoundEnabled(true);
+      expect(store.getState().isDirty).toBe(false);
+    });
+
+    it("should set desktopNotificationEnabled directly", () => {
+      expect(store.getState().desktopNotificationEnabled).toBe(true);
+      store.getState().setDesktopNotificationEnabled(false);
+      expect(store.getState().desktopNotificationEnabled).toBe(false);
+      expect(store.getState().isDirty).toBe(true);
+    });
+
+    it("should not mark dirty when desktopNotificationEnabled unchanged", () => {
+      store.getState().setDesktopNotificationEnabled(true);
+      expect(store.getState().isDirty).toBe(false);
+    });
+  });
+
   // ==================== Subscribe ====================
   describe("subscribe", () => {
     it("should notify listeners on state changes", () => {

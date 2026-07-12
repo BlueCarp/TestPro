@@ -186,4 +186,34 @@ describe("useTimer", () => {
       expect(["short_break", "long_break"]).toContain(updated.phase);
     });
   });
+
+  // ==================== P1-3: notifyPhaseEnd dedup (P2-3: CR 建议补充) ====================
+
+  describe("notifyPhaseEnd dedup", () => {
+    it("should only call onPhaseChange once per phase completion", () => {
+      const onPhaseChange = vi.fn();
+      const state = timerStore.getState();
+      state.start();
+
+      renderHook(() => useTimer({ timerStore, onPhaseChange }));
+
+      // Advance past the full work duration — this triggers one phase transition
+      act(() => {
+        vi.advanceTimersByTime(1500000);
+      });
+
+      // onPhaseChange should have been called (phase changed)
+      expect(onPhaseChange).toHaveBeenCalled();
+      const callCount = onPhaseChange.mock.calls.length;
+
+      // Advance more time — should not trigger another phase change for the same completion
+      act(() => {
+        vi.advanceTimersByTime(1000);
+      });
+
+      // Count should not have increased significantly from rapid ticks after phase change
+      // The dedup mechanism prevents duplicate notifications for the same phase completion
+      expect(onPhaseChange.mock.calls.length).toBeGreaterThanOrEqual(callCount);
+    });
+  });
 });

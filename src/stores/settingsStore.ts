@@ -39,6 +39,10 @@ export interface SettingsStore extends Settings {
   toggleSound: () => void;
   toggleDesktopNotification: () => void;
 
+  // 直接设置方法（P1-2 新增）
+  setSoundEnabled: (value: boolean) => void;
+  setDesktopNotificationEnabled: (value: boolean) => void;
+
   // 持久化操作
   save: () => Promise<SaveResult>;
   resetDefaults: () => void;
@@ -114,6 +118,16 @@ export function createSettingsStore(): SettingsStore {
 
     toggleDesktopNotification: () => {
       set((state) => ({ desktopNotificationEnabled: !state.desktopNotificationEnabled, isDirty: true }));
+    },
+
+    // ==================== Direct Set Methods (P1-2) ====================
+
+    setSoundEnabled: (value: boolean) => {
+      set((state) => ({ soundEnabled: value, isDirty: state.soundEnabled !== value }));
+    },
+
+    setDesktopNotificationEnabled: (value: boolean) => {
+      set((state) => ({ desktopNotificationEnabled: value, isDirty: state.desktopNotificationEnabled !== value }));
     },
 
     // ==================== Save ====================

@@ -179,7 +179,7 @@ const DurationInput: FC<DurationInputProps> = ({
             color: "#e74c3c",
           }}
         >
-          {error.message}
+          {error?.message ?? ''}
         </p>
       )}
     </div>

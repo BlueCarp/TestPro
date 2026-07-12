@@ -121,7 +121,8 @@ export function createTimerStore(
 
     reset: () => {
       const s = get();
-      if (s.status !== "paused") return;
+      // 允许 idle/paused/running 状态下重置（PRD：可随时重置）
+      if (s.status === "idle") return; // idle 无需重置
       engine.reset();
       const next = transition(toTimerState(s), { type: "RESET" }, duration);
       set({

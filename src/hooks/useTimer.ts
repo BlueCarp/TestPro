@@ -46,6 +46,8 @@ export function useTimer(deps: UseTimerDeps): TimerStore {
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const prevPhaseRef = useRef<Phase | null>(null);
+  // P1-3: 跟踪本次 tick 是否已通知，防止重复触发
+  const notifiedRef = useRef<Set<string>>(new Set());
 
   // 记录初始 phase，方便首次比较
   prevPhaseRef.current = timerStore.getState().phase;
@@ -77,9 +79,13 @@ export function useTimer(deps: UseTimerDeps): TimerStore {
           prevPhaseRef.current = currentPhase;
         }
 
-        // 归零时触发通知
+        // 归零时触发通知（P1-3: 去重）
         if (result.expired) {
-          notifyPhaseEnd(prevPhase ?? currentPhase);
+          const notifKey = `phase:${currentPhase}`;
+          if (!notifiedRef.current.has(notifKey)) {
+            notifiedRef.current.add(notifKey);
+            notifyPhaseEnd(prevPhase ?? currentPhase);
+          }
         }
       }
     }, TICK_INTERVAL_MS);
@@ -106,6 +112,8 @@ export function useTimer(deps: UseTimerDeps): TimerStore {
       if (prev && prev !== newState.phase) {
         onPhaseChange?.(prev, newState.phase);
         prevPhaseRef.current = newState.phase;
+        // P1-3: phase 变更后清除去重标记，允许新阶段的通知
+        notifiedRef.current.clear();
       }
     });
 

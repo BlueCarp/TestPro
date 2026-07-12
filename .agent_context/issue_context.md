@@ -1,22 +1,21 @@
 # Task Assignment
 
-**Issue ID:** 4f2e2997-946e-48ac-8be7-8fe8c46fd5de
+**Issue ID:** 27f9af9a-832c-4a36-81f7-65ed6726895d
 
 **Trigger:** Comment Reply
-**Triggering comment ID:** `d36648f1-d62e-4db1-a1f2-ee499c8bfa1d`
+**Triggering comment ID:** `d32f69a8-a0fb-4ccf-b675-a521639a50ed`
 
 ## Quick Start
 
-Run `multica issue get 4f2e2997-946e-48ac-8be7-8fe8c46fd5de --output json` to fetch the full issue details.
+Run `multica issue get 27f9af9a-832c-4a36-81f7-65ed6726895d --output json` to fetch the full issue details.
 
 ## Agent Skills
 
 The following skills are available to you:
 
-- **brainstorming**
-- **executing-plans**
-- **subagent-driven-development**
-- **writing-plans**
+- **correctness-and-error-handling**
+- **debugging-strategies**
+- **systematic-debugging**
 - **multica-autopilots**
 - **multica-creating-agents**
 - **multica-mentioning**

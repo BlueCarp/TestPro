@@ -25,6 +25,7 @@ import { useCallback, useState } from "react";
 import { createTimerStore } from "../../stores/timerStore";
 import { useTimer } from "../../hooks/useTimer";
 import { useKeyboard } from "../../hooks/useKeyboard";
+import { TimerStoreContext } from "../../hooks/useTray";
 import { TitleBar } from "../common/TitleBar";
 import { ConfirmModal } from "../common/ConfirmModal";
 import { PhaseLabel } from "./PhaseLabel";
@@ -146,6 +147,7 @@ const TimerPage: FC<TimerPageProps> = ({ timerStore: propTimerStore }) => {
   // ==================== 渲染 ====================
 
   return (
+    <TimerStoreContext.Provider value={timerStore}>
     <div style={pageStyle}>
       {/* 标题栏 */}
       <TitleBar onSettingsClick={handleSettingsClick} />
@@ -187,6 +189,7 @@ const TimerPage: FC<TimerPageProps> = ({ timerStore: propTimerStore }) => {
         />
       )}
     </div>
+    </TimerStoreContext.Provider>
   );
 };
 

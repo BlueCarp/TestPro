@@ -17,13 +17,15 @@
  * - 托盘完全在前端（JS）创建，无需修改 Rust 后端
  * - tooltip 更新频率与 tick 循环一致（250ms），通过 store subscribe 驱动
  * - 关闭窗口行为：托盘保留，计时器在后台继续运行
+ *
+ * P1-4 修复：使用 React Context 共享 timerStore，确保托盘 tooltip
+ * 与实际计时器状态同步，不再创建独立 store。
  */
 
-import { useEffect, useRef, createElement, type ReactNode } from "react";
+import { createContext, useContext, useEffect, createElement, type ReactNode } from "react";
 import { getCurrentWindow } from "@tauri-apps/api/window";
 import { TrayIcon } from "@tauri-apps/api/tray";
 import { Menu, MenuItem } from "@tauri-apps/api/menu";
-import { createTimerStore } from "../stores/timerStore";
 import type { TimerStore } from "../stores/timerStore";
 import { formatTime } from "../utils/formatTime";
 import type { Phase } from "../types/timer";
@@ -40,6 +42,14 @@ const TRAY_ID = "pomodoro-tray";
 
 // 全局托盘引用（供 useTray hook 访问）
 let globalTrayRef: TrayIcon | null = null;
+
+/** 共享 timerStore 的 React Context */
+export const TimerStoreContext = createContext<TimerStore | null>(null);
+
+/** 获取共享 timerStore 的 Hook */
+export function useSharedTimerStore(): TimerStore | null {
+  return useContext(TimerStoreContext);
+}
 
 /**
  * useTray Hook。
@@ -92,18 +102,6 @@ export function useTray(timerStore: TimerStore): void {
 }
 
 // ==================== TrayProvider 组件 ====================
-
-/**
- * TrayProvider 组件
- *
- * 在应用顶层创建托盘图标、菜单，并驱动 useTray Hook。
- * 托盘图标与计时器状态联动，tooltip 实时更新。
- *
- * 使用方式：<TrayProvider>{children}</TrayProvider>
- */
-interface TrayProviderProps {
-  children: ReactNode;
-}
 
 /**
  * 创建托盘图标和右键菜单。
@@ -165,31 +163,41 @@ export async function createSystemTray(): Promise<TrayIcon | null> {
 }
 
 /**
+ * TrayProviderProps interface.
+ *
+ * P1-4: 新增 timerStore prop，允许外部传入业务 timerStore。
+ * 如果未传入，TrayProvider 会使用 Context 中的共享 store。
+ */
+interface TrayProviderProps {
+  children: ReactNode;
+  /** 业务 timerStore 引用（P1-4 新增，传入后托盘 tooltip 同步实际计时器状态） */
+  timerStore?: TimerStore;
+}
+
+/**
  * TrayProvider 组件。
  *
- * 创建托盘图标和独立的 timerStore，驱动 useTray Hook 同步状态。
- * 使用 createElement 包装 children，避免 React 版本冲突。
+ * P1-4 修复：
+ * - 创建托盘图标和菜单（仅在 Tauri 环境）
+ * - 通过 TimerStoreContext 共享 timerStore，useTray 订阅业务 store
+ * - 确保托盘 tooltip 与实际计时器状态同步
+ *
+ * 使用方式：
+ *   <TrayProvider>{children}</TrayProvider>  // 自动从 Context 获取 store
  */
 export function TrayProvider(props: TrayProviderProps): ReactNode {
-  const { children } = props;
-  const storeRef = useRef<TimerStore | null>(null);
-  const initializedRef = useRef(false);
+  const { children, timerStore: propStore } = props;
 
-  // 在组件挂载时创建 timerStore 和托盘
+  // P1-4: 优先使用 prop 传入的 store，其次使用 Context 中的共享 store
+  const contextStore = useSharedTimerStore();
+  const effectiveStore = propStore ?? contextStore;
+
+  // 在 Tauri 环境中创建托盘图标
   useEffect(() => {
-    // 仅在 Tauri 环境中运行（浏览器中跳过）
     if (typeof window === "undefined" || !("__TAURI__" in window)) {
       return;
     }
 
-    // 只初始化一次
-    if (initializedRef.current) return;
-    initializedRef.current = true;
-
-    // 创建独立的 timerStore（托盘只读，不影响业务逻辑）
-    storeRef.current = createTimerStore();
-
-    // 异步创建托盘图标
     createSystemTray().then((tray) => {
       if (tray) {
         globalTrayRef = tray;
@@ -197,9 +205,9 @@ export function TrayProvider(props: TrayProviderProps): ReactNode {
     });
   }, []);
 
-  // 挂载 useTray Hook（传入独立 store）
-  if (storeRef.current) {
-    useTray(storeRef.current);
+  // P1-4: 使用共享的 timerStore 订阅状态变化
+  if (effectiveStore) {
+    useTray(effectiveStore);
   }
 
   // 使用 createElement 包装 children，避免 React 版本问题

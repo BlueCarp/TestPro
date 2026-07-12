@@ -189,14 +189,12 @@ const SettingsPage: FC<SettingsPageProps> = ({
     store.getState().updateWorkMinutes(workMinutes);
     store.getState().updateShortBreakMinutes(shortBreakMinutes);
     store.getState().updateLongBreakMinutes(longBreakMinutes);
-    // 通知开关通过 toggle 设置（toggle 翻转当前值）
-    const curSound = store.getState().soundEnabled;
-    if (curSound !== soundEnabled) {
-      store.getState().toggleSound();
+    // 通知开关通过直接设置方法（P1-2 修复：不再用 toggle 翻转）
+    if (soundEnabled !== store.getState().soundEnabled) {
+      store.getState().setSoundEnabled(soundEnabled);
     }
-    const curNotif = store.getState().desktopNotificationEnabled;
-    if (curNotif !== desktopNotificationEnabled) {
-      store.getState().toggleDesktopNotification();
+    if (desktopNotificationEnabled !== store.getState().desktopNotificationEnabled) {
+      store.getState().setDesktopNotificationEnabled(desktopNotificationEnabled);
     }
 
     // 前端校验
